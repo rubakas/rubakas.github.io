@@ -8,6 +8,8 @@
 
 <style lang="postcss">
   main {
+    min-height: -webkit-fill-available;
+    
     @apply
       min-w-full
       w-full
