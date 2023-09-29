@@ -9,6 +9,13 @@
          url('/fonts/BerkeleyMonoTrial-Regular.ttf') format("truetype");
   }
 
+  ::selection {
+    @apply 
+      bg-vt320-amber-light
+      text-vt320-grey
+      ;
+  }
+
   html {
     @apply
       bg-vt320-grey
@@ -30,5 +37,16 @@
       ;
     min-height: -webkit-fill-available;
     height: -webkit-fill-available;
+  }
+  body:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    pointer-events: none;
+    touch-action: none;
+    background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 1px, transparent 4px, transparent 4px);
   }
 }

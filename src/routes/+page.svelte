@@ -1,6 +1,6 @@
 <main>
   <article>
-    <h1>Rubakas</h1>
+    <h1 class="text-5xl">Rubakas</h1>
     <p>Home of the rubakas organisation</p>
   </article>  
 </main>
