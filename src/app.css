@@ -33,7 +33,9 @@
       min-h-full
       h-full
       ;
-    z-index: 50;
+    z-index: 10000;
+    @apply 
+    effect-vignette;
   }
   body::before {
     content: "";
@@ -45,11 +47,19 @@
     z-index: 1000;
     pointer-events: none;
     touch-action: none;
-    @apply effect-scanlines;
+    @apply 
+    effect-scanlines;
   }
 }
 
 @layer utilities {
+  .effect-vignette {
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/crt.png);
+    @include fill;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;	
+    z-index: 10000;
+  }
   .effect-scanlines {
 
     /* width: 100%;
