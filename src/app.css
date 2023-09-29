@@ -35,21 +35,51 @@
       ;
     z-index: 50;
   }
-  body::after {
+  body::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 100;
+    z-index: 1000;
     pointer-events: none;
     touch-action: none;
-    background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 1px, transparent 4px, transparent 4px);
+    @apply effect-scanlines;
   }
 }
 
 @layer utilities {
+  .effect-scanlines {
+
+    /* width: 100%;
+	  height: 100%;
+	  position: absolute;
+	  left: 0;
+	  top: 0;	
+
+    z-index: 9999; */
+    background: linear-gradient(
+        /* transparentize($screen-background, 1) 50%, */
+        #28282800 50%,
+
+        /* transparentize(darken($screen-background, 10), 0.75) 50% */
+        #24242466 50%
+      ),
+      linear-gradient(
+        90deg,
+        #ff00000f,
+        #00ff0005,
+        #0000ff0f
+        /* transparentize(#ff0000F0, 0.94),
+        transparentize(#00ff00FA, 0.98),
+        transparentize(#0000ffF0, 0.94) */
+      )
+      ;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+  }
+
   .effect-glow {
     -webkit-animation: glow 4s ease-in-out infinite alternate;
     -moz-animation: glow 4s ease-in-out infinite alternate;
