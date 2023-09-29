@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Berkeley Mono Trial';
+    src: url('/fonts/BerkeleyMonoTrial-Regular.otf') format("opentype"),
+         url('/fonts/BerkeleyMonoTrial-Regular.ttf') format("truetype");
+  }
+
+  html {
+    @apply
+      bg-vt320-grey
+      text-vt320-amber
+      w-full
+      min-h-full
+      h-full
+      ;
+    min-height: -webkit-fill-available;
+    height: -webkit-fill-available;
+  }
+
+  body {
+    @apply
+      font-berkeley
+      w-full
+      min-h-full
+      h-full
+      ;
+    min-height: -webkit-fill-available;
+    height: -webkit-fill-available;
+  }
+}
