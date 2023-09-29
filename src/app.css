@@ -76,23 +76,23 @@
         transparentize(#0000ffF0, 0.94) */
       )
       ;
-    background-size: 100% 2px, 3px 100%;
+    background-size: 100% 4px, 3px 100%;
     pointer-events: none;
   }
 
   .effect-glow {
-    -webkit-animation: glow 4s ease-in-out infinite alternate;
-    -moz-animation: glow 4s ease-in-out infinite alternate;
-    animation: glow 4s ease-in-out infinite alternate;
+    -webkit-animation: glow 8s ease-in-out infinite alternate;
+    -moz-animation: glow 8s ease-in-out infinite alternate;
+    animation: glow 8s ease-in-out infinite alternate;
   }
 
   @keyframes glow {
     from {
       text-shadow: 
         0 0 8px #ffcc00c0, 
-        0 0 16px #ffcc00c0, 
-        0 0 24px #ffb000c0, 
-        0 0 32px #ffb000c0;
+        0 0 16px #ffcc0080, 
+        0 0 24px #ffb00060, 
+        0 0 32px #ffb00060;
     }
     to {
       text-shadow: 
