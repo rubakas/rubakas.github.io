@@ -1,5 +1,7 @@
 <article>
-  <h1 class="text-center effect-glow">Rubakas</h1>
+  <h1 class="text-center effect-glow">
+    Rubakas<span class="bg-vt320-amber-light animate-[pulse_0.5s_ease-in-out_infinite]">&nbsp;</span>
+  </h1>
 </article>  
 
 <style lang="postcss">
