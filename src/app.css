@@ -46,7 +46,8 @@
     pointer-events: none;
     touch-action: none;
     @apply 
-      effect-scanlines;
+      effect-scanlines
+      ;
   }
 }
 
