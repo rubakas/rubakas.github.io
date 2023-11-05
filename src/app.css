@@ -4,9 +4,10 @@
 
 @layer base {
   @font-face {
-    font-family: 'Berkeley Mono Trial';
-    src: url('/fonts/BerkeleyMonoTrial-Regular.otf') format("opentype"),
-         url('/fonts/BerkeleyMonoTrial-Regular.ttf') format("truetype");
+    font-family: 'Berkeley Mono Variable';
+    src: url('/fonts/berkeley-mono-variable/WEB/BerkeleyMonoVariable-Regular.woff') format("woff");
+    src: url('/fonts/berkeley-mono-variable/WEB/BerkeleyMonoVariable-Regular.woff2') format("woff2");
+    src: url('/fonts/berkeley-mono-variable/TTF/BerkeleyMonoVariable-Regular.ttf') format("truetype");
   }
 
   ::selection {

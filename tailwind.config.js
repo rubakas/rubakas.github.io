@@ -14,7 +14,7 @@ export default {
         },
       },
       fontFamily: {
-        berkeley: ['Berkeley Mono Trial', 'sans-serif'],
+        berkeley: ['Berkeley Mono Variable', 'sans-serif'],
       },
       fontMetrics: {
         berkeley: {
@@ -96,7 +96,6 @@ export default {
     },
   },
   plugins: [
-    require('@tailwindcss/typography'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/container-queries'),
