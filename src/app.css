@@ -75,7 +75,7 @@
         #28282800 50%,
 
         /* transparentize(darken($screen-background, 10), 0.75) 50% */
-        #24242466 50%
+        #24242466 75%
       ),
       linear-gradient(
         90deg,
@@ -100,17 +100,17 @@
   @keyframes glow {
     from {
       text-shadow: 
-        0 0 8px #ffcc00c0, 
-        0 0 16px #ffcc0080, 
-        0 0 24px #ffb00060, 
-        0 0 32px #ffb00060;
+        0 0 8px #d69300a0, 
+        0 0 16px #d6930080, 
+        0 0 24px #d6930060,
+        0 0 32px #d6930060;
     }
     to {
       text-shadow: 
-        0 0 12px #ffcc0040,
-        0 0 24px #ffb00040, 
-        0 0 36px #ffb00040, 
-        0 0 48px #ffb00040; 
+        0 0 12px #d6930060, 
+        0 0 24px #d6930060, 
+        0 0 36px #d6930060,
+        0 0 48px #d6930060;
     }
   }
 }

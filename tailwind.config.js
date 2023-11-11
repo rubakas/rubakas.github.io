@@ -47,6 +47,7 @@ export default {
         'berkeley-10-grid': '58.8235px',
         'berkeley-11-grid': '64.7059px',
         'berkeley-12-grid': '70.5882px',
+        'berkeley-16-grid': '94.1176px',
       },
       lineHeight: {
         '1': '0.25rem',
