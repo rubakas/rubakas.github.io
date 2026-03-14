@@ -4,17 +4,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        'vt320': {
-          'amber': '#ffb000',
+        vt320: {
+          amber: '#ffb000',
           'amber-light': '#ffcc00',
           'green-one': '#33ff00',
           'green-two': '#00ff33',
           'green-three': '#00ff66',
-          'grey': '#282828',
-        },
+          grey: '#282828'
+        }
       },
       fontFamily: {
-        berkeley: ['Berkeley Mono Variable', 'sans-serif'],
+        berkeley: ['Berkeley Mono Variable', 'sans-serif']
       },
       fontMetrics: {
         berkeley: {
@@ -24,7 +24,7 @@ export default {
           lineGap: 0,
           unitsPerEm: 1000,
           xHeight: 522,
-          xWidthAvg: 600,
+          xWidthAvg: 600
         }
       },
       fontSize: {
@@ -47,36 +47,36 @@ export default {
         'berkeley-10-grid': '58.8235px',
         'berkeley-11-grid': '64.7059px',
         'berkeley-12-grid': '70.5882px',
-        'berkeley-16-grid': '94.1176px',
+        'berkeley-16-grid': '94.1176px'
       },
       lineHeight: {
-        '1': '0.25rem',
-        '2': '0.5rem',
-        '3': '0.75rem',
-        '4': '1rem',
-        '5': '1.25rem',
-        '6': '1.5rem',
-        '7': '1.75rem',
-        '7.5': '1.875rem',
-        '8': '2rem',
-        '10': '2.5rem',
-        '12': '3rem',
-        '12.5': '3.125rem',
-        '13.5': '3.275rem',
-        '14': '3.5rem',
-        '15': '3.75rem',
-        '16': '4rem',
-        '18': '4.5rem',
-        '20': '5rem',
-        '24': '6rem',
-        '25': '6.25rem',
+        1: '0.25rem',
+        2: '0.5rem',
+        3: '0.75rem',
+        4: '1rem',
+        5: '1.25rem',
+        6: '1.5rem',
+        7: '1.75rem',
+        7.5: '1.875rem',
+        8: '2rem',
+        10: '2.5rem',
+        12: '3rem',
+        12.5: '3.125rem',
+        13.5: '3.275rem',
+        14: '3.5rem',
+        15: '3.75rem',
+        16: '4rem',
+        18: '4.5rem',
+        20: '5rem',
+        24: '6rem',
+        25: '6.25rem'
       },
       spacing: {
-        'unset': 'unset',
+        unset: 'unset',
         5: '1.25rem',
-        8:  '2rem',
+        8: '2rem',
         10: '2.5rem',
-        '12.5': '3.125rem',
+        12.5: '3.125rem',
         13: '3.25rem',
         18: '4.5rem',
         22: '5.5rem',
@@ -92,15 +92,14 @@ export default {
         76: '19rem',
         84: '21rem',
         88: '22rem',
-        92: '23rem',
+        92: '23rem'
       }
-    },
+    }
   },
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/container-queries'),
-    require('tailwindcss-capsize'),
-  ],
-}
-
+    require('tailwindcss-capsize')
+  ]
+};

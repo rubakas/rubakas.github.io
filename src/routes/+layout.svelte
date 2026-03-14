@@ -1,5 +1,5 @@
 <script>
-  import "../app.css";
+  import '../app.css';
 </script>
 
 <main>
@@ -9,16 +9,14 @@
 <style lang="postcss">
   main {
     min-height: -webkit-fill-available;
-    
-    @apply
-      min-w-full
+
+    @apply min-w-full
       w-full
       min-h-full
       h-full
       flex 
       flex-col 
       grow
-      place-content-center
-      ;
+      place-content-center;
   }
 </style>
