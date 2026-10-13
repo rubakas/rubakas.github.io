@@ -58,3 +58,30 @@ test.describe('touch', () => {
 		await expect(button).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
 	});
 });
+
+test('link previews point at rubakas.com', async ({ page }) => {
+	await page.goto('/');
+	await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
+		'content',
+		'https://rubakas.com/og-1200x630.png'
+	);
+	await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
+		'content',
+		'https://rubakas.com/'
+	);
+	await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+		'href',
+		'https://rubakas.com/'
+	);
+});
+
+test('the not-found page is branded and leads home', async ({ page }) => {
+	await page.goto('/404');
+	await expect(page.getByRole('heading', { level: 1, name: 'Page not found.' })).toBeVisible();
+	await expect(page.locator('main .mark .done')).toBeVisible();
+	await expect(page.getByRole('link', { name: 'Back to the homepage' })).toHaveAttribute(
+		'href',
+		'/'
+	);
+	await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex');
+});

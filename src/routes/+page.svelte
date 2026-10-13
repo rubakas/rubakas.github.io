@@ -5,7 +5,7 @@
 	const title = 'Rubakas: The dice. Not the roll';
 	const description =
 		'Rubakas is a small crew that runs AI agents on real software work. AI consulting and strategy, tech support and maintenance.';
-	const site = 'https://rubakas.github.io';
+	const site = 'https://rubakas.com';
 </script>
 
 <svelte:head>
@@ -207,40 +207,12 @@
 		text-wrap: balance;
 	}
 
+	/* The button itself lives in app.css; here it only gets its place on the page. */
 	.button {
-		display: inline-flex;
-		align-items: center;
-		min-height: 48px;
-		max-width: 100%;
 		margin-top: clamp(24px, 4svh, 36px);
-		padding: 12px 28px;
-		border: 1px solid currentColor;
-		border-radius: 6px;
-		color: var(--color-paper);
-		font-family: var(--font-mono);
-		text-align: center;
-		font-size: 0.8125rem;
-		line-height: 1;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		text-decoration: none;
-		transition:
-			background-color 0.18s cubic-bezier(0.16, 1, 0.3, 1),
-			color 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-	}
-
-	/* Hover only where a pointer can hover; on touch a tap shows :active and then lets go. */
-	.button:active {
-		background: var(--color-paper);
-		color: var(--color-soot);
 	}
 
 	@media (hover: hover) {
-		.button:hover {
-			background: var(--color-paper);
-			color: var(--color-soot);
-		}
-
 		.github:hover {
 			color: var(--color-paper);
 		}

@@ -9,7 +9,9 @@ export default defineConfig({
 		tailwindcss(),
 		sveltekit({
 			adapter: adapter(),
-			preprocess: vitePreprocess()
+			preprocess: vitePreprocess(),
+			// GitHub Pages serves 404.html at whatever address was mistyped, so assets must be absolute
+			paths: { relative: false }
 		})
 	],
 	test: {

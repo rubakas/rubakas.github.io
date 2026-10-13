@@ -36,7 +36,11 @@
 		};
 		frame = requestAnimationFrame(tick);
 
-		return () => cancelAnimationFrame(frame);
+		return () => {
+			cancelAnimationFrame(frame);
+			// unmounted before the lock: do not leave the page stuck on the stand-in tile
+			delete root.dataset.intro;
+		};
 	});
 </script>
 

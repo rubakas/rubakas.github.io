@@ -26,12 +26,12 @@
 			href="%sveltekit.assets%/fonts/ibm-plex-mono/ibm-plex-mono-latin-400-normal.woff2"
 		/>
 
-		<!-- The lock-in plays only when motion is welcome. Without this flag, or without JS, the
-		     finished mark is what renders. The flag holds a failsafe timer id: if hydration is slow
+		<!-- The lock-in plays only on the home page, and only when motion is welcome. Without this flag,
+		     or without JS, the finished mark is what renders. The flag holds a failsafe timer id: if hydration is slow
 		     or never arrives the finished mark returns after 3.5 s, and once the cover mounts it
 		     cancels the timer and runs the intro itself. -->
 		<script>
-			if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			if (location.pathname === '/' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 				document.documentElement.dataset.intro = setTimeout(function () {
 					delete document.documentElement.dataset.intro;
 				}, 3500);

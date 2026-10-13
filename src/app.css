@@ -53,3 +53,40 @@
 		outline-offset: 3px;
 	}
 }
+
+@layer components {
+	/* The outline button, paper on soot. It never takes a fill except on hover and press. Hover
+	   only where a pointer can hover; on touch a tap shows :active and then lets go. */
+	.button {
+		display: inline-flex;
+		align-items: center;
+		min-height: 48px;
+		max-width: 100%;
+		padding: 12px 28px;
+		border: 1px solid currentColor;
+		border-radius: 6px;
+		color: var(--color-paper);
+		font-family: var(--font-mono);
+		font-size: 0.8125rem;
+		line-height: 1;
+		letter-spacing: 0.12em;
+		text-align: center;
+		text-transform: uppercase;
+		text-decoration: none;
+		transition:
+			background-color 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+			color 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.button:active {
+		background: var(--color-paper);
+		color: var(--color-soot);
+	}
+
+	@media (hover: hover) {
+		.button:hover {
+			background: var(--color-paper);
+			color: var(--color-soot);
+		}
+	}
+}

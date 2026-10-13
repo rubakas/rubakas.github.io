@@ -61,7 +61,7 @@ const pages = {
 		bg: SOOT,
 		body: mark(276, 'style="position:absolute;left:118px;top:118px"')
 	},
-	// link preview: day lockup, primary form, with the GitHub address bottom right
+	// link preview: day lockup, primary form, with the site address bottom right
 	'og-1200x630.png': {
 		w: 1200,
 		h: 630,
@@ -74,7 +74,7 @@ const pages = {
 		<span style="font:400 30px/1 'IBM Plex Mono';letter-spacing:.12em;text-transform:uppercase;color:${SOOT}">The dice. Not the roll</span>
 	</div>
 </div>
-<span style="position:absolute;right:120px;bottom:64px;font:400 26px/1 'IBM Plex Mono';letter-spacing:.06em;color:${SLATE}">github.com/rubakas</span>`
+<span style="position:absolute;right:120px;bottom:64px;font:400 26px/1 'IBM Plex Mono';letter-spacing:.06em;color:${SLATE}">rubakas.com</span>`
 	}
 };
 
