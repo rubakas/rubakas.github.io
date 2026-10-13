@@ -2,10 +2,41 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#161616" />
 
-		<meta name="theme-color" content="#282828" />
-		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" type="image/svg+xml" />
+		<link rel="icon" href="%sveltekit.assets%/favicon-32.png" sizes="32x32" type="image/png" />
+		<link rel="icon" href="%sveltekit.assets%/favicon-16.png" sizes="16x16" type="image/png" />
+		<link rel="apple-touch-icon" href="%sveltekit.assets%/apple-touch-icon.png" />
+		<link rel="manifest" href="%sveltekit.assets%/manifest.webmanifest" />
+
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			crossorigin
+			href="%sveltekit.assets%/fonts/montserrat/montserrat-latin-wght-normal.woff2"
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			crossorigin
+			href="%sveltekit.assets%/fonts/ibm-plex-mono/ibm-plex-mono-latin-400-normal.woff2"
+		/>
+
+		<!-- The lock-in plays only when motion is welcome. Without this flag, or without JS, the
+		     finished mark is what renders. The flag holds a failsafe timer id: if hydration is slow
+		     or never arrives the finished mark returns after 3.5 s, and once the cover mounts it
+		     cancels the timer and runs the intro itself. -->
+		<script>
+			if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				document.documentElement.dataset.intro = setTimeout(function () {
+					delete document.documentElement.dataset.intro;
+				}, 3500);
+			}
+		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

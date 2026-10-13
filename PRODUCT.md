@@ -44,8 +44,8 @@ Terminology: "crew", "agents draft, people decide", "review". Avoid framing the 
 
 - Name: Rubakas, from Russian рубака (rubaka), from рубить, "to hew": shaping raw output into clean work. The guide keeps the hew-and-carve reading and leaves blades out.
 - Voice, per the guide: plain-spoken (short sentences, no hype about AI, no magic); convention over improvisation (the Rails habit applied to machines); humans lead (talk about review, not autonomy). Headings in sentence case.
-- The user supplied the Identity Guidelines v1.0 (October 2026) as the reference for this rebrand. Both files are in `docs/brand/`: `rubakas-brand-guide.pdf` and `rubakas-identity-guidelines.dc.html`. How far the guide binds the visual world is decided in new-work, not here.
-- **Open conflict between the two files.** The HTML (v1.0, 11 Oct 2026) sets the descriptor "agent crew · rails-born" under the wordmark. The newer PDF (exported 14 Oct 2026) uses the tagline "The dice. Not the roll" in its lockups and lists two shortlisted lines, "The human is the loop." and "Taste is load-bearing." Which line is current is undecided.
+- The user supplied the Identity Guidelines v1.0 (October 2026) as the reference for this rebrand. Both files are in `docs/brand/`: `rubakas-brand-guide.pdf` and `rubakas-identity-guidelines.dc.html`. The user confirmed the guide is the visual world for the site: its palette, typefaces, mark, lockups and tone are fixed, and the old amber CRT terminal look is retired.
+- **Tagline: "The dice. Not the roll"**, set under the wordmark as in the newer PDF lockups (exported 14 Oct 2026). This supersedes the descriptor "agent crew · rails-born" from the earlier HTML (v1.0, 11 Oct 2026), which the user did not choose for the page. The PDF also shortlists two voice lines, "The human is the loop." and "Taste is load-bearing."; neither is confirmed for the site.
 
 ## Evidence on Hand
 
