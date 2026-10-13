@@ -1,16 +1,16 @@
 <script>
-  import '../app.css';
+	import '../app.css';
 </script>
 
 <main>
-  <slot />
+	<slot />
 </main>
 
 <style lang="postcss">
-  main {
-    min-height: -webkit-fill-available;
+	main {
+		min-height: -webkit-fill-available;
 
-    @apply min-w-full
+		@apply min-w-full
       w-full
       min-h-full
       h-full
@@ -18,5 +18,5 @@
       flex-col 
       grow
       place-content-center;
-  }
+	}
 </style>
