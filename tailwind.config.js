@@ -1,6 +1,8 @@
+import typography from '@tailwindcss/typography';
+import capsize from 'tailwindcss-capsize';
+
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {
 			colors: {
@@ -96,10 +98,5 @@ export default {
 			}
 		}
 	},
-	plugins: [
-		require('@tailwindcss/typography'),
-		require('@tailwindcss/aspect-ratio'),
-		require('@tailwindcss/container-queries'),
-		require('tailwindcss-capsize')
-	]
+	plugins: [typography, capsize]
 };

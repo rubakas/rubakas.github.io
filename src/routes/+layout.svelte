@@ -7,6 +7,8 @@
 </main>
 
 <style lang="postcss">
+	@reference "../app.css";
+
 	main {
 		min-height: -webkit-fill-available;
 

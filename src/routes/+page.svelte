@@ -110,6 +110,8 @@
 </article>
 
 <style lang="postcss">
+	@reference "../app.css";
+
 	article {
 		@apply w-full
       h-full
