@@ -149,7 +149,7 @@
 
 	/* The lockup's measures come from the guide: stacked, scaled from the tile height --h. */
 	.cover {
-		--h: clamp(88px, min(28vw, 30svh), 220px);
+		--h: clamp(88px, min(28vw, 30svh), max(220px, 15vw));
 		min-height: 100svh;
 		display: grid;
 		place-items: center;
@@ -229,9 +229,21 @@
 			color 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
-	.button:hover {
+	/* Hover only where a pointer can hover; on touch a tap shows :active and then lets go. */
+	.button:active {
 		background: var(--color-paper);
 		color: var(--color-soot);
+	}
+
+	@media (hover: hover) {
+		.button:hover {
+			background: var(--color-paper);
+			color: var(--color-soot);
+		}
+
+		.github:hover {
+			color: var(--color-paper);
+		}
 	}
 
 	/* An address stays in the case people will copy it in. */
@@ -407,10 +419,6 @@
 		transition: color 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
-	.github:hover {
-		color: var(--color-paper);
-	}
-
 	@media (min-width: 48rem) {
 		.offer,
 		.principles,
@@ -471,6 +479,71 @@
 
 		.crew-head p {
 			grid-column: 9 / -1;
+		}
+	}
+
+	/* A phone on its side: the lockup keeps its proportions but is smaller, and the rhythm is
+	   tighter, so the button is still on the first screen. */
+	@media (max-height: 32rem) {
+		.cover {
+			--h: clamp(64px, 22svh, 120px);
+			padding-block: 20px;
+		}
+
+		.lede {
+			margin-top: 16px;
+			max-width: 56ch;
+		}
+
+		.cover .button {
+			margin-top: 16px;
+		}
+	}
+
+	/* Saved as PDF or printed, backgrounds are usually off: every band becomes soot on white. The mark
+	   keeps its red (see Mark.svelte). */
+	@media print {
+		.cover,
+		.night,
+		.day,
+		footer {
+			min-height: 0;
+			background: none;
+			color: var(--color-soot);
+		}
+
+		.cover {
+			padding-block: 24px;
+		}
+
+		.lede,
+		.close p,
+		.github {
+			color: var(--color-ink);
+		}
+
+		.github {
+			text-decoration-color: var(--color-ink);
+		}
+
+		.button {
+			color: var(--color-soot);
+		}
+
+		.running {
+			break-after: avoid;
+		}
+
+		.offer,
+		.principles li,
+		.close-row {
+			break-inside: avoid;
+		}
+
+		h2,
+		h3 {
+			break-after: avoid;
+			break-inside: avoid;
 		}
 	}
 </style>

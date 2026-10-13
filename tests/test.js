@@ -39,3 +39,22 @@ test('enlarged text does not widen the page', async ({ page }) => {
 	);
 	expect(overflow).toBe(0);
 });
+
+test('the first action stays on screen on a phone held sideways', async ({ page }) => {
+	await page.setViewportSize({ width: 844, height: 390 });
+	await page.goto('/');
+	await expect(page.locator('.cover .button')).toBeInViewport({ ratio: 1 });
+});
+
+test.describe('touch', () => {
+	test.use({ hasTouch: true, isMobile: true });
+
+	test('a tap does not leave the button in its hover state', async ({ page }) => {
+		await page.goto('/');
+		const button = page.locator('.close .button');
+		await button.evaluate((el) => el.addEventListener('click', (e) => e.preventDefault()));
+		await button.scrollIntoViewIfNeeded();
+		await button.tap();
+		await expect(button).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+	});
+});

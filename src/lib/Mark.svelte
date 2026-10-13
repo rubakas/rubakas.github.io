@@ -54,6 +54,9 @@
 		display: block;
 		flex: none;
 		overflow: visible;
+		/* the red is the point of the mark; it prints even when backgrounds are off */
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
 	}
 
 	.done,
