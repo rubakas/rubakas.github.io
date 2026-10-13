@@ -1,214 +1,514 @@
-<article>
-	<h1 class="text-center effect-glow">
-		RUBAKAS <span class="bg-vt320-amber-light animate-[pulse_0.75s_ease-in-out_infinite]">
-			&nbsp;
-		</span>
-	</h1>
+<script>
+	import Mark from '../lib/Mark.svelte';
 
-	<div class="tagline">
-		<p class="tl-1">
-			<span class="label">TYPE</span><span class="sep">&nbsp;&rarr;&nbsp;</span><span
-				class="content">AI Orchestration, development, consulting &amp; strategy</span
-			>
-		</p>
-		<p class="tl-2">
-			<span class="label">SCOPE</span><span class="sep">&nbsp;&rarr;&nbsp;</span><span
-				class="content">Any business, any industry</span
-			>
-		</p>
-		<p class="tl-3">
-			<span class="label">RECORD</span><span class="sep">&nbsp;&rarr;&nbsp;</span><span
-				class="content">Tech support or full maintenance</span
-			>
-		</p>
+	const email = 'contact@rubakas.com';
+	const title = 'Rubakas: The dice. Not the roll';
+	const description =
+		'Rubakas is a small crew that runs AI agents on real software work. AI consulting and strategy, tech support and maintenance.';
+	const site = 'https://rubakas.com';
+</script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<link rel="canonical" href="{site}/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Rubakas" />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:url" content="{site}/" />
+	<meta property="og:image" content="{site}/og-1200x630.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="The Rubakas mark and wordmark: The dice. Not the roll." />
+	<meta name="twitter:card" content="summary_large_image" />
+</svelte:head>
+
+<main>
+	<section class="cover">
+		<div class="stage">
+			<div class="cover-mark"><Mark intro /></div>
+			<h1>
+				<span class="wordmark">Rubakas</span>
+				<span class="tagline">The dice. Not the roll</span>
+			</h1>
+			<p class="lede">A small crew running AI agents on real software work.</p>
+			<a class="button" href="mailto:{email}">Talk with us</a>
+		</div>
+	</section>
+
+	<section class="day work" aria-labelledby="work-title">
+		<div class="wrap">
+			<div class="running" aria-hidden="true"><span class="running-mark"><Mark solid /></span></div>
+			<h2 id="work-title">Two ways to work with the crew.</h2>
+			<dl class="offers">
+				<div class="offer">
+					<dt>AI consulting and strategy</dt>
+					<dd>
+						Orchestration, development and advice, from the first plan to a system in production.
+					</dd>
+				</div>
+				<div class="offer">
+					<dt>Tech support and maintenance</dt>
+					<dd>Help when you need it, or full maintenance of the systems you already run.</dd>
+				</div>
+			</dl>
+		</div>
+	</section>
+
+	<section class="day crew" aria-labelledby="crew-title">
+		<div class="wrap">
+			<div class="running" aria-hidden="true"><span class="running-mark"><Mark solid /></span></div>
+			<div class="crew-head">
+				<h2 id="crew-title">A small crew with a big crew behind it.</h2>
+				<p>
+					Friends who spent years building for the web with Ruby on Rails. Today we run crews of AI
+					agents, with hardened specs, clear roles and honest review.
+				</p>
+			</div>
+			<ul class="principles" role="list">
+				<li>
+					<h3>Plain-spoken</h3>
+					<p>Short sentences. No hype about AI, no magic. We say what the crew does.</p>
+				</li>
+				<li>
+					<h3>Convention over improvisation</h3>
+					<p>The Rails habit, applied to machines: defaults, structure, repeatable results.</p>
+				</li>
+				<li>
+					<h3>Humans lead</h3>
+					<p>Agents draft, people decide. We talk about review, not autonomy.</p>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="night close" aria-labelledby="close-title">
+		<div class="wrap close-row">
+			<div class="close-mark"><Mark /></div>
+			<div class="close-copy">
+				<h2 id="close-title">Tell us what you are building.</h2>
+				<p>Or what needs looking after.</p>
+				<a class="button address" href="mailto:{email}">Email {email}</a>
+			</div>
+		</div>
+	</section>
+</main>
+
+<footer>
+	<div class="wrap footer-row">
+		<div class="lockup">
+			<span class="lockup-mark"><Mark /></span>
+			<span class="wordmark">Rubakas</span>
+		</div>
+		<a class="github" href="https://github.com/rubakas">github.com/rubakas</a>
 	</div>
+</footer>
 
-	<p class="value-prop">
-		Your industry, your scale &mdash; We turn AI strategy into working production systems &mdash;
-		for any business.
-	</p>
+<style>
+	main,
+	footer {
+		/* with the text size turned up, long words and the address wrap rather than widen the page */
+		overflow-wrap: anywhere;
+		--gutter: clamp(20px, 5vw, 64px);
+		/* One twelve-column grid runs through every band: columns 1, 5 and 9 are the shared edges. */
+		--col-gap: clamp(20px, 2.5vw, 40px);
+	}
 
-	<a href="mailto:contact@rubakas.com" class="cta">Talk with us &rarr;</a>
+	.wrap {
+		width: min(100% - 2 * var(--gutter), 72rem);
+		margin-inline: auto;
+	}
 
-	<div
-		class="flex flex-row text-center place-content-center gap-8 md:gap-16 mt-8 md:mt-16 opacity-60"
-	>
-		<a
-			href="https://youtu.be/dQw4w9WgXcQ?si=xXTUetH3GLGf2LUw"
-			aria-label="Our YouTube channel"
-			target="_blank"
-			rel="noopener"
-		>
-			<svg
-				class="h-8 md:h-10 lg:h-12"
-				xmlns="http://www.w3.org/2000/svg"
-				xml:space="preserve"
-				id="Layer_1"
-				x="0"
-				y="0"
-				version="1.1"
-				viewBox="0 0 71.412065 50"
-			>
-				<style id="style3" type="text/css">
-					/* .st2{fill:#282828} */
-				</style>
-				<g id="g5" transform="scale(.58824)">
-					<path
-						fill="currentColor"
-						id="path7"
-						fill-opacity="1"
-						d="M118.9 13.3c-1.4-5.2-5.5-9.3-10.7-10.7C98.7 0 60.7 0 60.7 0s-38 0-47.5 2.5C8.1 3.9 3.9 8.1 2.5 13.3 0 22.8 0 42.5 0 42.5s0 19.8 2.5 29.2C3.9 76.9 8 81 13.2 82.4 22.8 85 60.7 85 60.7 85s38 0 47.5-2.5c5.2-1.4 9.3-5.5 10.7-10.7 2.5-9.5 2.5-29.2 2.5-29.2s.1-19.8-2.5-29.3z"
-					/>
-					<path id="polygon9" fill="#currentColor" d="M80.2 42.5 48.6 24.3v36.4z" />
-				</g>
-			</svg>
-		</a>
+	/* Night: the cover and the close. Paper text on soot. */
+	.cover,
+	.night,
+	footer {
+		background: var(--color-soot);
+		color: var(--color-paper);
+	}
 
-		<a href="https://github.com/rubakas" aria-label="Our GitHub" target="_blank" rel="noopener">
-			<svg class="h-8 md:h-10 lg:h-12" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
-				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
-					d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
-					fill="currentColor"
-				/>
-			</svg>
-		</a>
+	/* Day: paper ground, soot ink. */
+	.day {
+		background: var(--color-paper);
+		color: var(--color-soot);
+		padding-block: clamp(72px, 11vw, 144px);
+	}
 
-		<a href="mailto:contact@rubakas.com" aria-label="Email us">
-			<svg
-				class="h-8 md:h-10 lg:h-12"
-				viewBox="0 0 24 24"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path
-					d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm3.519 0L12 11.671 18.481 6H5.52zM20 7.329l-7.341 6.424a1 1 0 0 1-1.318 0L4 7.329V18h16V7.329z"
-					fill="currentColor"
-				/>
-			</svg>
-		</a>
+	/* Two day sections in a row share one gap, not two. */
+	.day + .day {
+		padding-top: 0;
+	}
 
-		<a
-			href="https://plugari.com/"
-			aria-label="Plugari — our product"
-			target="_blank"
-			rel="noopener"
-		>
-			<svg
-				class="h-8 md:h-10 lg:h-12"
-				fill="currentColor"
-				viewBox="0 -64 640 640"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path
-					d="M528 336c-48.6 0-88 39.4-88 88s39.4 88 88 88 88-39.4 88-88-39.4-88-88-88zm0 112c-13.23 0-24-10.77-24-24s10.77-24 24-24 24 10.77 24 24-10.77 24-24 24zm80-288h-64v-40.2c0-14.12 4.7-27.76 13.15-38.84 4.42-5.8 3.55-14.06-1.32-19.49L534.2 37.3c-6.66-7.45-18.32-6.92-24.7.78C490.58 60.9 480 89.81 480 119.8V160H377.67L321.58 29.14A47.914 47.914 0 0 0 277.45 0H144c-26.47 0-48 21.53-48 48v146.52c-8.63-6.73-20.96-6.46-28.89 1.47L36 227.1c-8.59 8.59-8.59 22.52 0 31.11l5.06 5.06c-4.99 9.26-8.96 18.82-11.91 28.72H22c-12.15 0-22 9.85-22 22v44c0 12.15 9.85 22 22 22h7.14c2.96 9.91 6.92 19.46 11.91 28.73l-5.06 5.06c-8.59 8.59-8.59 22.52 0 31.11L67.1 476c8.59 8.59 22.52 8.59 31.11 0l5.06-5.06c9.26 4.99 18.82 8.96 28.72 11.91V490c0 12.15 9.85 22 22 22h44c12.15 0 22-9.85 22-22v-7.14c9.9-2.95 19.46-6.92 28.72-11.91l5.06 5.06c8.59 8.59 22.52 8.59 31.11 0l31.11-31.11c8.59-8.59 8.59-22.52 0-31.11l-5.06-5.06c4.99-9.26 8.96-18.82 11.91-28.72H330c12.15 0 22-9.85 22-22v-6h80.54c21.91-28.99 56.32-48 95.46-48 18.64 0 36.07 4.61 51.8 12.2l50.82-50.82c6-6 9.37-14.14 9.37-22.63V192c.01-17.67-14.32-32-31.99-32zM176 416c-44.18 0-80-35.82-80-80s35.82-80 80-80 80 35.82 80 80-35.82 80-80 80zm22-256h-38V64h106.89l41.15 96H198z"
-				/>
-			</svg>
-		</a>
-	</div>
-</article>
+	/* The lockup's measures come from the guide: stacked, scaled from the tile height --h. */
+	.cover {
+		--h: clamp(88px, min(28vw, 30svh), max(220px, 15vw));
+		min-height: 100svh;
+		display: grid;
+		place-items: center;
+		padding: 48px var(--gutter);
+	}
 
-<style lang="postcss">
-	article {
-		@apply w-full
-      h-full
-      flex
-      flex-col
-      grow
-      place-content-center;
+	.stage {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.cover-mark {
+		width: var(--h);
+		height: var(--h);
 	}
 
 	h1 {
-		@apply place-self-center
-
-      font-berkeley
-      text-berkeley-8-grid md:text-berkeley-10-grid lg:text-berkeley-12-grid
-      leading-16 md:leading-20 lg:leading-24
-      capsize
-
-      pb-12
-      my-8;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: calc(var(--h) * 0.257);
+		margin: calc(var(--h) * 0.257) 0 0;
+		font-weight: 400;
 	}
 
-	p {
-		@apply font-berkeley
-      text-berkeley-4-grid lg:text-berkeley-6-grid
-      leading-8 lg:leading-12
-      capsize;
+	.wordmark {
+		font-weight: 700;
+		line-height: 1;
+		letter-spacing: 0.2em;
+		/* the tracking trails the last letter; this puts the optical centre back */
+		padding-left: 0.2em;
+		text-transform: uppercase;
+	}
+
+	.cover .wordmark {
+		font-size: calc(var(--h) * 0.414);
 	}
 
 	.tagline {
-		@apply place-self-center
-      pb-10
-      max-w-full
-      px-4;
-		opacity: 0.85;
+		font-family: var(--font-mono);
+		font-size: max(11px, calc(var(--h) * 0.157));
+		line-height: 1;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
 	}
 
-	.tagline p {
-		@apply font-berkeley
-      text-berkeley-3-grid md:text-berkeley-4-grid
-      leading-8
-      pb-2;
-		display: flex;
-		align-items: baseline;
-		animation: fadein 0.4s ease-out both;
-		letter-spacing: 0.05em;
+	.lede {
+		margin: clamp(28px, 4svh, 44px) 0 0;
+		max-width: 34ch;
+		color: var(--color-slate-light);
+		font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+		line-height: 1.5;
+		text-wrap: balance;
 	}
 
-	.tagline .content {
-		flex: 1;
-		min-width: 0;
+	/* The button itself lives in app.css; here it only gets its place on the page. */
+	.button {
+		margin-top: clamp(24px, 4svh, 36px);
 	}
 
-	.tagline .tl-1 {
-		animation-delay: 0.6s;
-	}
-	.tagline .tl-2 {
-		animation-delay: 1.1s;
-	}
-	.tagline .tl-3 {
-		animation-delay: 1.6s;
-	}
-
-	.label {
-		@apply text-vt320-amber-light;
-		display: inline-block;
-		min-width: calc(6ch + 0.35em);
-	}
-
-	.sep {
-		opacity: 0.5;
-	}
-
-	.value-prop {
-		@apply font-berkeley text-berkeley-2-grid md:text-berkeley-3-grid leading-6 capsize place-self-center text-center pb-8;
-		opacity: 0.6;
-		letter-spacing: 0.04em;
-	}
-
-	.cta {
-		@apply font-berkeley text-berkeley-3-grid md:text-berkeley-4-grid leading-8 capsize place-self-center;
-		border: 1px solid currentColor;
-		padding: 0.4em 1.4em;
-		letter-spacing: 0.08em;
-		opacity: 0.75;
-		margin-top: 2rem;
-		transition: opacity 0.2s ease;
-	}
-	.cta:hover {
-		opacity: 1;
-	}
-
-	@keyframes fadein {
-		from {
-			opacity: 0;
-			transform: translateY(4px);
+	@media (hover: hover) {
+		.github:hover {
+			color: var(--color-paper);
 		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
+	}
+
+	/* An address stays in the case people will copy it in. */
+	.button.address {
+		letter-spacing: 0.04em;
+		text-transform: none;
+	}
+
+	/* A wordless section marker from the guide's running header: the tile at 14px on a hairline. */
+	.running {
+		margin: 0 0 clamp(40px, 6vw, 72px);
+		padding-bottom: 16px;
+		border-bottom: 1px solid var(--color-hairline);
+	}
+
+	.running-mark {
+		display: block;
+		width: 14px;
+		height: 14px;
+	}
+
+	h2 {
+		margin: 0;
+		max-width: 18ch;
+		font-size: clamp(2rem, 1rem + 4.2vw, 3.75rem);
+		font-weight: 700;
+		line-height: 1.08;
+		letter-spacing: -0.01em;
+		text-wrap: balance;
+	}
+
+	/* What we do: two rows between soot rules, the guide's spec-sheet pattern. */
+	.offers {
+		margin: clamp(40px, 6vw, 72px) 0 0;
+		border-top: 1px solid var(--color-soot);
+	}
+
+	.offer {
+		display: grid;
+		gap: 12px;
+		padding: 28px 0;
+		border-bottom: 1px solid var(--color-soot);
+	}
+
+	dt {
+		font-size: clamp(1.375rem, 1rem + 1.2vw, 1.875rem);
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+	dd {
+		margin: 0;
+		max-width: 56ch;
+		color: var(--color-ink);
+		font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+		line-height: 1.6;
+		text-wrap: pretty;
+	}
+
+	/* How we work: one statement, then three plain columns. */
+	.crew-head {
+		display: grid;
+		gap: 28px;
+	}
+
+	.crew-head p {
+		margin: 0;
+		max-width: 46ch;
+		color: var(--color-ink);
+		font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+		line-height: 1.6;
+		text-wrap: pretty;
+	}
+
+	.principles {
+		display: grid;
+		gap: 32px;
+		margin: clamp(48px, 7vw, 88px) 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.principles li {
+		padding-top: 20px;
+		border-top: 1px solid var(--color-soot);
+	}
+
+	h3 {
+		margin: 0;
+		font-size: 1.25rem;
+		font-weight: 600;
+		line-height: 1.25;
+	}
+
+	.principles p {
+		margin: 12px 0 0;
+		max-width: 34ch;
+		color: var(--color-ink);
+		font-size: 1.0625rem;
+		line-height: 1.6;
+		text-wrap: pretty;
+	}
+
+	/* Close: the finished mark, large, on soot. The page opens and ends on the tile. */
+	.close {
+		padding-block: clamp(72px, 11vw, 144px) clamp(56px, 8vw, 96px);
+	}
+
+	.close-row {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 40px;
+	}
+
+	.close-mark {
+		order: -1;
+		width: 88px;
+		height: 88px;
+	}
+
+	.close p {
+		margin: 20px 0 0;
+		color: var(--color-slate-light);
+		font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+		line-height: 1.5;
+	}
+
+	.close .button {
+		margin-top: 40px;
+	}
+
+	footer {
+		padding-block: 0 40px;
+	}
+
+	.footer-row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px 32px;
+		padding-top: 28px;
+		border-top: 1px solid var(--color-ink);
+	}
+
+	.lockup {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+	}
+
+	.lockup-mark {
+		width: 32px;
+		height: 32px;
+	}
+
+	.lockup .wordmark {
+		font-size: 15px;
+	}
+
+	.github {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		color: var(--color-slate-light);
+		font-family: var(--font-mono);
+		font-size: 0.8125rem;
+		letter-spacing: 0.06em;
+		text-decoration: underline;
+		text-decoration-color: var(--color-slate);
+		text-underline-offset: 0.35em;
+		transition: color 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	@media (min-width: 48rem) {
+		.offer,
+		.principles,
+		.close-row {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+			column-gap: var(--col-gap);
+		}
+
+		.offer {
+			align-items: baseline;
+			padding: 40px 0;
+		}
+
+		.offer dt {
+			grid-column: 1 / 5;
+		}
+
+		.offer dd {
+			grid-column: 5 / -1;
+		}
+
+		/* equal thirds: columns 1, 5 and 9 */
+		.principles li {
+			grid-column: span 4;
+		}
+
+		.close-row {
+			display: grid;
+			align-items: center;
+		}
+
+		/* the mark leads in the DOM for the mobile order; both share row 1 here */
+		.close-copy {
+			grid-column: 1 / 9;
+			grid-row: 1;
+		}
+
+		.close-mark {
+			order: 0;
+			grid-column: 9 / -1;
+			grid-row: 1;
+			width: 100%;
+			height: auto;
+			aspect-ratio: 1;
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.crew-head {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+			column-gap: var(--col-gap);
+			align-items: end;
+		}
+
+		.crew-head h2 {
+			grid-column: 1 / 9;
+		}
+
+		.crew-head p {
+			grid-column: 9 / -1;
+		}
+	}
+
+	/* A phone on its side: the lockup keeps its proportions but is smaller, and the rhythm is
+	   tighter, so the button is still on the first screen. */
+	@media (max-height: 32rem) {
+		.cover {
+			--h: clamp(64px, 22svh, 120px);
+			padding-block: 20px;
+		}
+
+		.lede {
+			margin-top: 16px;
+			max-width: 56ch;
+		}
+
+		.cover .button {
+			margin-top: 16px;
+		}
+	}
+
+	/* Saved as PDF or printed, backgrounds are usually off: every band becomes soot on white. The mark
+	   keeps its red (see Mark.svelte). */
+	@media print {
+		.cover,
+		.night,
+		.day,
+		footer {
+			min-height: 0;
+			background: none;
+			color: var(--color-soot);
+		}
+
+		.cover {
+			padding-block: 24px;
+		}
+
+		.lede,
+		.close p,
+		.github {
+			color: var(--color-ink);
+		}
+
+		.github {
+			text-decoration-color: var(--color-ink);
+		}
+
+		.button {
+			color: var(--color-soot);
+		}
+
+		.running {
+			break-after: avoid;
+		}
+
+		.offer,
+		.principles li,
+		.close-row {
+			break-inside: avoid;
+		}
+
+		h2,
+		h3 {
+			break-after: avoid;
+			break-inside: avoid;
 		}
 	}
 </style>
