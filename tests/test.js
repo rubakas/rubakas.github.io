@@ -13,6 +13,16 @@ test('the first viewport offers one way to reach the crew', async ({ page }) => 
 	);
 });
 
+test('the running markers stay at 14px', async ({ page }) => {
+	await page.goto('/');
+	const marks = page.locator('.running-mark svg');
+	await expect(marks).toHaveCount(2);
+	for (const mark of await marks.all()) {
+		const box = await mark.boundingBox();
+		expect([box?.width, box?.height]).toEqual([14, 14]);
+	}
+});
+
 test('the finished mark is shown when motion is reduced', async ({ page }) => {
 	await page.emulateMedia({ reducedMotion: 'reduce' });
 	await page.goto('/');

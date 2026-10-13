@@ -243,6 +243,7 @@
 	}
 
 	.running-mark {
+		display: block;
 		width: 14px;
 		height: 14px;
 	}
