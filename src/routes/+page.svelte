@@ -11,6 +11,7 @@
 <svelte:head>
 	<title>{title}</title>
 	<meta name="description" content={description} />
+	<link rel="canonical" href="{site}/" />
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Rubakas" />
 	<meta property="og:title" content={title} />
@@ -65,7 +66,7 @@
 					agents, with hardened specs, clear roles and honest review.
 				</p>
 			</div>
-			<ul class="principles">
+			<ul class="principles" role="list">
 				<li>
 					<h3>Plain-spoken</h3>
 					<p>Short sentences. No hype about AI, no magic. We say what the crew does.</p>
@@ -107,6 +108,8 @@
 <style>
 	main,
 	footer {
+		/* with the text size turned up, long words and the address wrap rather than widen the page */
+		overflow-wrap: anywhere;
 		--gutter: clamp(20px, 5vw, 64px);
 		/* One twelve-column grid runs through every band: columns 1, 5 and 9 are the shared edges. */
 		--col-gap: clamp(20px, 2.5vw, 40px);
@@ -208,12 +211,14 @@
 		display: inline-flex;
 		align-items: center;
 		min-height: 48px;
+		max-width: 100%;
 		margin-top: clamp(24px, 4svh, 36px);
-		padding: 0 28px;
+		padding: 12px 28px;
 		border: 1px solid currentColor;
 		border-radius: 6px;
 		color: var(--color-paper);
 		font-family: var(--font-mono);
+		text-align: center;
 		font-size: 0.8125rem;
 		line-height: 1;
 		letter-spacing: 0.12em;
@@ -389,6 +394,9 @@
 	}
 
 	.github {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
 		color: var(--color-slate-light);
 		font-family: var(--font-mono);
 		font-size: 0.8125rem;

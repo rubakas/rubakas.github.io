@@ -29,3 +29,13 @@ test('the finished mark is shown when motion is reduced', async ({ page }) => {
 	await expect(page.locator('.cover .mark .done')).toBeVisible();
 	await expect(page.locator('.cover .mark .cube')).toBeHidden();
 });
+
+test('enlarged text does not widen the page', async ({ page }) => {
+	await page.setViewportSize({ width: 360, height: 740 });
+	await page.goto('/');
+	await page.addStyleTag({ content: 'html { font-size: 200% !important }' });
+	const overflow = await page.evaluate(
+		() => document.documentElement.scrollWidth - document.documentElement.clientWidth
+	);
+	expect(overflow).toBe(0);
+});
