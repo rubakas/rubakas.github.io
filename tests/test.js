@@ -75,6 +75,16 @@ test('link previews point at rubakas.com', async ({ page }) => {
 	);
 });
 
+test('crawlers are pointed at the sitemap on rubakas.com', async ({ request }) => {
+	const robots = await request.get('/robots.txt');
+	expect(robots.ok()).toBe(true);
+	expect(await robots.text()).toContain('Sitemap: https://rubakas.com/sitemap.xml');
+
+	const sitemap = await request.get('/sitemap.xml');
+	expect(sitemap.ok()).toBe(true);
+	expect(await sitemap.text()).toContain('<loc>https://rubakas.com/</loc>');
+});
+
 test('the not-found page is branded and leads home', async ({ page }) => {
 	await page.goto('/404');
 	await expect(page.getByRole('heading', { level: 1, name: 'Page not found.' })).toBeVisible();

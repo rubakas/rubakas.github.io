@@ -43,7 +43,7 @@ src/routes/404/              the branded not-found page
 src/lib/Mark.svelte          the Rubakas mark and its lock-in animation
 src/lib/mark.js              mark geometry and motion maths
 src/app.css                  Tailwind 4 theme tokens, fonts, base styles, the button
-static/                      fonts, favicons, link-preview card, web manifest
+static/                      fonts, favicons, link-preview card, web manifest, robots.txt, sitemap
 scripts/                     brand asset generator
 tests/                       Playwright tests
 docs/brand/                  Rubakas Identity Guidelines v1.0
@@ -60,7 +60,7 @@ To redeploy without a new commit, use the **Redeploy** badge above. It opens the
 - The custom domain is set under Settings, Pages, not in the repo. A `CNAME` file does nothing here, because the site is published by the Actions workflow.
 - The Pages source is **GitHub Actions**, with HTTPS enforced.
 - Once the custom domain is set, GitHub Pages redirects the default `rubakas.github.io` address to it.
-- The domain is written into the page itself: the canonical link and the Open Graph tags take it from the `site` constant in `src/routes/+page.svelte`, and the link-preview test in `tests/test.js` asserts it. The card image from `npm run brand:assets` also carries it. If the domain ever changes, those are the places to update.
+- The domain is written into the page itself: the canonical link and the Open Graph tags take it from the `site` constant in `src/routes/+page.svelte`, and the link-preview test in `tests/test.js` asserts it. The card image from `npm run brand:assets` also carries it, and so do `static/robots.txt` and `static/sitemap.xml`. If the domain ever changes, those are the places to update.
 - Assets use absolute paths (`paths.relative: false` in `vite.config.js`), because Pages serves `404.html` at whatever address was mistyped.
 
 ## Brand and product
