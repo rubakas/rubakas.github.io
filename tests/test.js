@@ -85,3 +85,28 @@ test('the not-found page is branded and leads home', async ({ page }) => {
 	);
 	await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex');
 });
+
+test('the button inverts under a mouse', async ({ page }) => {
+	await page.goto('/');
+	const button = page.locator('.close .button');
+	await button.scrollIntoViewIfNeeded();
+	await button.hover();
+	await expect(button).toHaveCSS('background-color', 'rgb(250, 250, 248)');
+	await expect(button).toHaveCSS('color', 'rgb(22, 22, 22)');
+});
+
+test('selected text uses one colour on both grounds', async ({ page }) => {
+	await page.goto('/');
+	/** @param {string} selector */
+	const selection = (selector) =>
+		page
+			.locator(selector)
+			.first()
+			.evaluate((el) => {
+				const style = getComputedStyle(el, '::selection');
+				return [style.backgroundColor, style.color];
+			});
+	const slateLight = ['rgb(153, 161, 175)', 'rgb(22, 22, 22)'];
+	expect(await selection('.lede')).toEqual(slateLight); // night
+	expect(await selection('.offer dd')).toEqual(slateLight); // day
+});

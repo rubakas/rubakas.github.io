@@ -128,13 +128,6 @@
 		color: var(--color-paper);
 	}
 
-	.cover ::selection,
-	.night ::selection,
-	footer ::selection {
-		background: var(--color-paper);
-		color: var(--color-soot);
-	}
-
 	/* Day: paper ground, soot ink. */
 	.day {
 		background: var(--color-paper);

@@ -43,9 +43,11 @@
 		scrollbar-color: var(--color-slate) var(--color-soot);
 	}
 
+	/* One selection colour for both grounds: Slate Light with soot text. 6.96:1 text contrast, and the
+	   highlight stands clear of soot (6.96:1) and of paper (2.5:1). */
 	::selection {
-		background: var(--color-soot);
-		color: var(--color-paper);
+		background: var(--color-slate-light);
+		color: var(--color-soot);
 	}
 
 	:focus-visible {

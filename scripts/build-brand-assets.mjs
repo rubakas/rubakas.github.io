@@ -30,7 +30,7 @@ const mark = (size, extra = '') =>
  * Small sizes snap the 45 degree cut to whole pixels.
  */
 function solidTile(size) {
-	const cut = { 16: 4, 32: 8 }[size] ?? Math.round(size * 0.2612);
+	const cut = { 16: 4 }[size] ?? Math.round(size * 0.2612);
 	const s = size;
 	const points = [
 		[cut, 0],

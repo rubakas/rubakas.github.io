@@ -28,11 +28,6 @@
 		overflow-wrap: anywhere;
 	}
 
-	main ::selection {
-		background: var(--color-paper);
-		color: var(--color-soot);
-	}
-
 	.mark {
 		width: 96px;
 		height: 96px;
