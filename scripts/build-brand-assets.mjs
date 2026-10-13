@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
-import { TILE, MARK } from '../src/lib/mark.js';
+import { MARK } from '../src/lib/mark.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.join(root, 'static');
@@ -24,7 +24,11 @@ const fontCss = `
 const mark = (size, extra = '') =>
 	`<svg width="${size}" height="${size}" viewBox="0 0 100 100" ${extra}><path d="${MARK}" fill="${RED}" fill-rule="evenodd"/></svg>`;
 
-/** The favicon is the solid tile with no R. Small sizes snap the 45 degree cut to whole pixels. */
+/**
+ * The 16px favicon is the solid tile with no R: the guide drops the R below 24px. The 32px PNG and
+ * the SVG carry the R (the owner's call; the guide's favicon line says "solid tile, no R").
+ * Small sizes snap the 45 degree cut to whole pixels.
+ */
 function solidTile(size) {
 	const cut = { 16: 4, 32: 8 }[size] ?? Math.round(size * 0.2612);
 	const s = size;
@@ -43,7 +47,7 @@ function solidTile(size) {
 
 const pages = {
 	'favicon-16.png': { w: 16, h: 16, transparent: true, body: solidTile(16) },
-	'favicon-32.png': { w: 32, h: 32, transparent: true, body: solidTile(32) },
+	'favicon-32.png': { w: 32, h: 32, transparent: true, body: mark(32) },
 	// soot ground, mark at 60% (180) and 54% (512), as the guide specifies
 	'apple-touch-icon.png': {
 		w: 180,
@@ -76,7 +80,7 @@ const pages = {
 
 fs.writeFileSync(
 	path.join(out, 'favicon.svg'),
-	`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="${TILE}" fill="${RED}"/></svg>\n`
+	`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="${MARK}" fill="${RED}" fill-rule="evenodd"/></svg>\n`
 );
 
 fs.writeFileSync(
