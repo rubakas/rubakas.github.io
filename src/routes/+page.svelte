@@ -75,14 +75,22 @@
 				<h2 id="crew-title">
 					Building faster is the small win. Redrawing the value chain is the big one.
 				</h2>
-				<p>
-					Software teams are built like factories because writing was scarce: code, specs, tickets,
-					documents. Specialists shared it out, and every pass between them cost time and meaning.
-					Agents make writing cheap, and software made with them is grown and corrected, not
-					specified once and shipped. Running the old routine faster captures a fraction of that.
-					The rest goes to whoever reorganises the work around cheap writing; a small crew has less
-					to unlearn.
-				</p>
+				<div class="crew-text">
+					<p>
+						Most software teams work like an assembly line. Specs, code, tickets and documents pass
+						from one specialist to the next, because writing them took so long that no one person
+						could do it all. The line made sense for that limit. Every handover on it costs time and
+						some of what the first person meant.
+					</p>
+					<p>
+						Agents lift that limit. The stations that existed only because of it stop being needed;
+						the ones that call for judgment stay with people. Most teams spend the gain running the
+						same line faster, and get the same results with the bottleneck moved to deciding what to
+						build, quality and coordination. The rest of the gain goes to whoever reorganises the
+						work. A small crew has less to unlearn, so we start there: one crew holding the work
+						together instead of passing it along.
+					</p>
+				</div>
 			</div>
 			<ul class="principles" role="list">
 				<li>
@@ -102,7 +110,7 @@
 				<li>
 					<h3>Collaboration is a must</h3>
 					<p>
-						When work stops moving down a fixed sequence, the routine hand-offs can be automated.
+						When work stops moving down a fixed sequence, the routine handovers can be automated.
 						What counts then is a shared record: the specs, code and decisions that people and
 						agents all build from, kept current.
 					</p>
@@ -126,17 +134,26 @@
 				<div class="offer">
 					<dt>AI consulting and strategy</dt>
 					<dd>
-						We assess how far along you are with agents: what they can take on today, and what is
-						still missing. We choose which changes in how your people and teams work come first, and
-						guide them through. And we run discovery spikes: short prototypes that answer one
-						question before anything big is built.
+						<p>
+							An assessment of how far along you are with agents: what they can take on today, and
+							what is still missing.
+						</p>
+						<p>
+							Guidance on change: choosing which changes in how your people and teams work come
+							first, and guiding them through.
+						</p>
+						<p>
+							Discovery spikes: short prototypes that answer one question before anything big is
+							built.
+						</p>
 					</dd>
 				</div>
 				<div class="offer">
 					<dt>Agentic-first apps and platforms</dt>
 					<dd>
-						Not old software with agents bolted on, but software designed around them from the
-						start: agents write it, run inside it, and feedback steers it.
+						We build software designed around agents from the start, not old software with agents
+						bolted on. Agents draft it. They also do some of the work inside it while it runs. And
+						what people do with it steers what it becomes next.
 					</dd>
 				</div>
 			</dl>
@@ -350,6 +367,15 @@
 		text-wrap: pretty;
 	}
 
+	/* The consulting row lists its three engagements, one short paragraph each. */
+	dd p {
+		margin: 0;
+	}
+
+	dd p + p {
+		margin-top: 12px;
+	}
+
 	/* How we work: one statement, then three plain columns. */
 	.crew-head {
 		display: grid;
@@ -363,6 +389,10 @@
 		font-size: var(--text-body);
 		line-height: 1.6;
 		text-wrap: pretty;
+	}
+
+	.crew-head p + p {
+		margin-top: 1em;
 	}
 
 	.principles {
@@ -500,7 +530,7 @@
 			grid-column: 1 / -1;
 		}
 
-		.crew-head p {
+		.crew-text {
 			grid-column: 5 / -1;
 		}
 
