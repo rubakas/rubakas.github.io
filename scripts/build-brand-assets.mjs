@@ -13,7 +13,10 @@ const out = path.join(root, 'static');
 const SOOT = '#161616';
 const PAPER = '#FAFAF8';
 const RED = '#EE1E1E';
-const SLATE = '#6A7282';
+const SLATE_LIGHT = '#99A1AF';
+
+/** Tile height of the link card's lockup, in px. */
+const H = 200;
 
 const fontData = (file) => fs.readFileSync(path.join(out, 'fonts', file)).toString('base64');
 const fontCss = `
@@ -56,20 +59,20 @@ const pages = {
 		bg: SOOT,
 		body: mark(276, 'style="position:absolute;left:118px;top:118px"')
 	},
-	// link preview: day lockup, primary form, with the site address bottom right
+	// link preview: the cover as it first appears, the night ground with the stacked lockup, scaled
+	// from the tile height H as on the page (wordmark 0.414 H, tagline 0.157 H, gaps 0.257 H), with the
+	// site address at the foot in slate light
 	'og-1200x630.png': {
 		w: 1200,
 		h: 630,
-		bg: PAPER,
+		bg: SOOT,
 		body: `
-<div style="position:absolute;left:120px;top:0;height:630px;display:flex;align-items:center;gap:54px">
-	${mark(180)}
-	<div style="display:flex;flex-direction:column;gap:24px">
-		<span style="font:700 83.5px/1 Montserrat;letter-spacing:.2em;color:${SOOT}">RUBAKAS</span>
-		<span style="font:400 30px/1 'IBM Plex Mono';letter-spacing:.12em;text-transform:uppercase;color:${SOOT}">Taste is load-bearing</span>
-	</div>
+<div style="position:absolute;left:0;right:0;top:88px;display:flex;flex-direction:column;align-items:center;gap:${H * 0.257}px">
+	${mark(H)}
+	<span style="padding-left:.2em;font:700 ${H * 0.414}px/1 Montserrat;letter-spacing:.2em;color:${PAPER}">RUBAKAS</span>
+	<span style="font:400 ${H * 0.157}px/1 'IBM Plex Mono';letter-spacing:.12em;text-transform:uppercase;color:${PAPER}">Taste is load-bearing</span>
 </div>
-<span style="position:absolute;right:120px;bottom:64px;font:400 26px/1 'IBM Plex Mono';letter-spacing:.06em;color:${SLATE}">rubakas.com</span>`
+<span style="position:absolute;left:0;right:0;bottom:48px;text-align:center;font:400 26px/1 'IBM Plex Mono';letter-spacing:.06em;color:${SLATE_LIGHT}">rubakas.com</span>`
 	}
 };
 
