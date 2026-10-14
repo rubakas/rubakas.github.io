@@ -70,6 +70,14 @@
 		scrollbar-color: var(--color-slate) var(--color-soot);
 	}
 
+	/* The pages turn every band to soot on white for print. The soot ground under them has to go too:
+	   printed with background graphics on, it would swallow the soot text. */
+	@media print {
+		html {
+			background: none;
+		}
+	}
+
 	/* Pressing a running marker or the footer logo glides to its target instead of jumping. It is the
 	   browser's own scroll, asked for only while the page holds data-glide (set by the press, see
 	   +page.svelte), so a reload still restores the scroll position at once. It stays off for visitors

@@ -342,6 +342,25 @@ test('the button inverts under a mouse', async ({ page }) => {
 	await expect(button).toHaveCSS('color', 'rgb(22, 22, 22)');
 });
 
+test('printed pages put soot text on white, with no soot ground under it', async ({ page }) => {
+	await page.emulateMedia({ media: 'print' });
+	for (const path of ['/', '/404']) {
+		await page.goto(path);
+		// a screenshot paints backgrounds, so the ground is read from the styles: with background
+		// graphics on, any soot left on the page, html included, would swallow the soot text
+		const grounds = await page.evaluate(() =>
+			[document.documentElement, ...document.querySelectorAll('main, section, footer')].map(
+				(el) => getComputedStyle(el).backgroundColor
+			)
+		);
+		expect(grounds.filter((ground) => ground !== 'rgba(0, 0, 0, 0)')).toEqual([]);
+		await expect(page.locator('h1').first()).toHaveCSS('color', 'rgb(22, 22, 22)');
+	}
+	// the footer wordmark is paper on screen; printed on white it has to turn soot too
+	await page.goto('/');
+	await expect(page.locator('.lockup .wordmark')).toHaveCSS('color', 'rgb(22, 22, 22)');
+});
+
 test('selected text uses one colour on both grounds', async ({ page }) => {
 	await page.goto('/');
 	/** @param {string} selector */

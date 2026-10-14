@@ -606,7 +606,8 @@
 			text-decoration-color: var(--color-ink);
 		}
 
-		.button {
+		.button,
+		.lockup {
 			color: var(--color-soot);
 		}
 
