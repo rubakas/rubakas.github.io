@@ -67,7 +67,7 @@
 				<a
 					class="running-link"
 					href="#crew"
-					aria-label="Scroll to the top of this section: Building faster is the small win. Redrawing the value chain is the big one"
+					aria-label="Scroll to the top of this section: Building faster is the small win"
 					><span class="running-mark"><Mark solid /></span></a
 				>
 			</div>
@@ -148,7 +148,6 @@
 			<div class="close-mark"><Mark /></div>
 			<div class="close-copy">
 				<h2 id="close-title">Tell us what you are building.</h2>
-				<p>Or what needs looking after.</p>
 				<a class="button" href="mailto:{email}">Email {email}</a>
 			</div>
 		</div>
@@ -419,13 +418,6 @@
 		height: 88px;
 	}
 
-	.close p {
-		margin: 20px 0 0;
-		color: var(--color-slate-light);
-		font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
-		line-height: 1.5;
-	}
-
 	.close .button {
 		margin-top: 40px;
 	}
@@ -583,7 +575,6 @@
 		}
 
 		.lede,
-		.close p,
 		.github {
 			color: var(--color-ink);
 		}
