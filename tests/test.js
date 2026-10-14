@@ -110,9 +110,19 @@ test('the email address never breaks inside the word', async ({ page }) => {
 	}
 });
 
+test('the page says who the crew is before what it can be hired for', async ({ page }) => {
+	await page.goto('/');
+	const ids = await page.locator('main > section.day').evaluateAll((els) => els.map((el) => el.id));
+	expect(ids).toEqual(['crew', 'work']);
+});
+
 test('the crew band leads with the claim a competitor cannot copy', async ({ page }) => {
 	await page.goto('/');
-	await expect(page.locator('.principles h3').first()).toHaveText('Humans lead');
+	const first = page.locator('.principles h3').first();
+	await expect(first).toHaveText('Human is the loop');
+	// the stress is on "is": italic, and Montserrat's italic is an oblique, so the browser's slant is true to it
+	await expect(first.locator('em')).toHaveText('is');
+	await expect(first.locator('em')).toHaveCSS('font-style', 'italic');
 });
 
 test('the logos are red lines with a solid R; the footer and the running markers are solid tiles', async ({
@@ -177,8 +187,8 @@ test('a running marker scrolls its own section to the top', async ({ page }) => 
 	// the landing is measured with the jump; the glide has its own test below
 	await page.emulateMedia({ reducedMotion: 'reduce' });
 	const sections = [
-		{ id: 'work', name: /Two ways to work with the crew/ },
-		{ id: 'crew', name: /A small crew with a big crew behind it/ }
+		{ id: 'crew', name: /Building faster is the small win/ },
+		{ id: 'work', name: /What is in our focus/ }
 	];
 	for (const size of [
 		{ width: 1440, height: 900 },
@@ -216,7 +226,7 @@ test('pressing a marker or the footer logo glides there, and jumps when motion i
 }) => {
 	await page.goto('/');
 	const links = [
-		page.getByRole('link', { name: /A small crew with a big crew behind it/ }),
+		page.getByRole('link', { name: /Building faster is the small win/ }),
 		page.getByRole('link', { name: 'Rubakas, back to the top' })
 	];
 	for (const reducedMotion of /** @type {const} */ (['no-preference', 'reduce'])) {

@@ -5,7 +5,7 @@
 	const email = 'contact@rubakas.com';
 	const title = 'Rubakas: Taste is load-bearing';
 	const description =
-		'Rubakas is a small crew that runs AI agents on real software work. AI consulting and strategy, tech support and maintenance.';
+		'Rubakas is a small crew that runs AI agents on real software work. AI consulting and strategy, agentic-first apps and platforms.';
 	const site = 'https://rubakas.com';
 
 	// Pressing an in-page link (a running marker, the footer logo) glides to its target. The page asks
@@ -61,63 +61,85 @@
 		</div>
 	</section>
 
-	<section id="work" class="day work" aria-labelledby="work-title">
-		<div class="wrap">
-			<div class="running">
-				<a
-					class="running-link"
-					href="#work"
-					aria-label="Scroll to the top of this section: Two ways to work with the crew"
-					><span class="running-mark"><Mark solid /></span></a
-				>
-			</div>
-			<h2 id="work-title">Two ways to work with the crew.</h2>
-			<dl class="offers">
-				<div class="offer">
-					<dt>AI consulting and strategy</dt>
-					<dd>
-						Orchestration, development and advice, from the first plan to a system in production.
-					</dd>
-				</div>
-				<div class="offer">
-					<dt>Tech support and maintenance</dt>
-					<dd>Help when you need it, or full maintenance of the systems you already run.</dd>
-				</div>
-			</dl>
-		</div>
-	</section>
-
 	<section id="crew" class="day crew" aria-labelledby="crew-title">
 		<div class="wrap">
 			<div class="running">
 				<a
 					class="running-link"
 					href="#crew"
-					aria-label="Scroll to the top of this section: A small crew with a big crew behind it"
+					aria-label="Scroll to the top of this section: Building faster is the small win. Redrawing the value chain is the big one"
 					><span class="running-mark"><Mark solid /></span></a
 				>
 			</div>
 			<div class="crew-head">
-				<h2 id="crew-title">A small crew with a big crew behind it.</h2>
+				<h2 id="crew-title">
+					Building faster is the small win. Redrawing the value chain is the big one.
+				</h2>
 				<p>
-					Friends who spent years building for the web with Ruby on Rails. Today we run crews of AI
-					agents, with hardened specs, clear roles and honest review.
+					Software teams are built like factories because writing was scarce: code, specs, tickets,
+					documents. Specialists shared it out, and every pass between them cost time and meaning.
+					Agents make writing cheap, and software made with them is grown and corrected, not
+					specified once and shipped. Running the old routine faster captures a fraction of that.
+					The rest goes to whoever reorganises the work around cheap writing; a small crew has less
+					to unlearn.
 				</p>
 			</div>
 			<ul class="principles" role="list">
 				<li>
-					<h3>Humans lead</h3>
-					<p>Agents draft, people decide. We talk about review, not autonomy.</p>
+					<h3>Human <em>is</em> the loop</h3>
+					<p>
+						A single person builds much more than before. Repetitive work runs itself. What is left
+						needs judgment and skill, and people get more room for both.
+					</p>
 				</li>
 				<li>
-					<h3>Plain-spoken</h3>
-					<p>Short sentences. No hype about AI, no magic. We say what the crew does.</p>
+					<h3>Main thing</h3>
+					<p>
+						When anything can be built quickly, the temptation is to build everything. Choosing what
+						matters and holding to it is the real work, from one person to a whole organisation.
+					</p>
 				</li>
 				<li>
-					<h3>Convention over improvisation</h3>
-					<p>The Rails habit, applied to machines: defaults, structure, repeatable results.</p>
+					<h3>Collaboration is a must</h3>
+					<p>
+						When work stops moving down a fixed sequence, the routine hand-offs can be automated.
+						What counts then is a shared record: the specs, code and decisions that people and
+						agents all build from, kept current.
+					</p>
 				</li>
 			</ul>
+		</div>
+	</section>
+
+	<section id="work" class="day work" aria-labelledby="work-title">
+		<div class="wrap">
+			<div class="running">
+				<a
+					class="running-link"
+					href="#work"
+					aria-label="Scroll to the top of this section: What is in our focus"
+					><span class="running-mark"><Mark solid /></span></a
+				>
+			</div>
+			<h2 id="work-title">What is in our focus</h2>
+			<dl class="offers">
+				<div class="offer">
+					<dt>AI consulting and strategy</dt>
+					<dd>
+						We assess how far along you are with agents: what they can take on today, and what is
+						still missing. We choose which changes in how your people and teams work come first, and
+						guide them through. And we run discovery spikes: short prototypes that answer one
+						question before anything big is built.
+					</dd>
+				</div>
+				<div class="offer">
+					<dt>Agentic-first apps and platforms</dt>
+					<dd>
+						Not old software with agents bolted on, but software designed around them from the
+						start: agents write it, run inside it, and feedback steers it.
+					</dd>
+				</div>
+			</dl>
 		</div>
 	</section>
 

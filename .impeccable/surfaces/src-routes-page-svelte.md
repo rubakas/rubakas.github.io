@@ -9,7 +9,7 @@ related_targets: []
 
 Scope: the single homepage (`src/routes/+page.svelte`) and the brand assets the guide lists for the web. Visitor mode: Persuade.
 
-Audience and job: a business lead arriving cold decides in seconds whether this small crew is credible for AI consulting and strategy, or for ongoing tech support. A developer arriving from github.com/rubakas is secondary. Action: email contact@rubakas.com through a `mailto:` button; no forms.
+Audience and job: a business lead arriving cold decides in seconds whether this small crew is credible for AI consulting and strategy, or for building agentic-first apps and platforms. A developer arriving from github.com/rubakas is secondary. Action: email contact@rubakas.com through a `mailto:` button; no forms.
 
 Proof and content: plain statements of method from the Identity Guidelines v1.0 (`docs/brand/`), the two confirmed offerings, and the GitHub link. No clients, testimonials, pricing or demos. `agent-notes` and Plugari stay off the page.
 
