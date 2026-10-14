@@ -479,7 +479,7 @@
 
 	@media (min-width: 48rem) {
 		.offer,
-		.principles,
+		.crew-head,
 		.close-row {
 			grid-template-columns: repeat(12, minmax(0, 1fr));
 			column-gap: var(--col-gap);
@@ -498,9 +498,33 @@
 			grid-column: 5 / -1;
 		}
 
-		/* equal thirds: columns 1, 5 and 9 */
+		/* Names sit at column 1 and running text at column 5, as in the offers: the crew paragraph takes
+		   that edge under its heading, so it gets a readable measure instead of the last four columns. */
+		.crew-head h2 {
+			grid-column: 1 / -1;
+		}
+
+		.crew-head p {
+			grid-column: 5 / -1;
+		}
+
+		/* Until 75rem a third of the page is 220 to 290px, under 30 characters a line, so each
+		   principle is a row on the same two edges. */
 		.principles li {
-			grid-column: span 4;
+			display: grid;
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+			column-gap: var(--col-gap);
+			align-items: baseline;
+		}
+
+		.principles h3 {
+			grid-column: 1 / 5;
+		}
+
+		.principles p {
+			grid-column: 5 / -1;
+			margin: 0;
+			max-width: 46ch;
 		}
 
 		.close-row {
@@ -524,19 +548,22 @@
 		}
 	}
 
-	@media (min-width: 64rem) {
-		.crew-head {
+	@media (min-width: 75rem) {
+		/* equal thirds: columns 1, 5 and 9. A third is about 340px here, 33 characters of body text;
+		   below this the rows read better. */
+		.principles {
 			grid-template-columns: repeat(12, minmax(0, 1fr));
 			column-gap: var(--col-gap);
-			align-items: end;
 		}
 
-		.crew-head h2 {
-			grid-column: 1 / 9;
+		.principles li {
+			display: block;
+			grid-column: span 4;
 		}
 
-		.crew-head p {
-			grid-column: 9 / -1;
+		.principles p {
+			margin: 12px 0 0;
+			max-width: 34ch;
 		}
 	}
 
