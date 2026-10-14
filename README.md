@@ -1,6 +1,6 @@
 # Rubakas
 
-**The dice. Not the roll.**
+**Taste is load-bearing.**
 
 [![Deploy](https://github.com/rubakas/rubakas.github.io/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/rubakas/rubakas.github.io/actions/workflows/deploy.yml)
 [![Site](https://img.shields.io/badge/site-rubakas.com-161616?style=flat-square)](https://rubakas.com)

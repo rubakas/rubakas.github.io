@@ -1,10 +1,22 @@
 <script>
 	import { onMount } from 'svelte';
-	import { TILE, MARK, hullPath, anglesAt, T_LOCK } from './mark.js';
+	import {
+		CONTOUR,
+		CONTOUR_SCALE,
+		CONTOUR_W,
+		MARK,
+		R_LETTER,
+		hullPath,
+		anglesAt,
+		T_LOCK
+	} from './mark.js';
 
 	/**
+	 * The mark is the cut tile drawn as a red line, with the R inside it as a solid red letter.
 	 * `intro` plays the lock-in on load (only the cover does; the flag is set in app.html).
-	 * `solid` draws the tile alone, with no R, for the small sizes the guide reserves for it.
+	 * `solid` is the guide's own mark, the red tile with the R cut out of it. The footer and the
+	 * running markers use it: at those sizes (24 and 32px) a line would thin to a hairline, but the
+	 * guide still keeps the R from 24px up.
 	 */
 	let { intro = false, solid = false } = $props();
 
@@ -31,14 +43,14 @@
 				locked = true;
 				return;
 			}
-			cube?.setAttribute('d', hullPath(anglesAt(t)));
+			cube?.setAttribute('d', hullPath(anglesAt(t), CONTOUR_SCALE));
 			frame = requestAnimationFrame(tick);
 		};
 		frame = requestAnimationFrame(tick);
 
 		return () => {
 			cancelAnimationFrame(frame);
-			// unmounted before the lock: do not leave the page stuck on the stand-in tile
+			// unmounted before the lock: do not leave the page stuck on the stand-in cube
 			delete root.dataset.intro;
 		};
 	});
@@ -46,10 +58,13 @@
 
 <svg class="mark" class:lock={locked} viewBox="0 0 100 100" aria-hidden="true" focusable="false">
 	{#if solid}
-		<path class="plain" d={TILE} />
+		<path class="solid" d={MARK} fill-rule="evenodd" />
 	{:else}
-		<path class="done" d={MARK} fill-rule="evenodd" />
-		<path class="cube" bind:this={cube} d={TILE} />
+		<g class="done">
+			<path class="line" d={CONTOUR} stroke-width={CONTOUR_W} />
+			<path class="letter" d={R_LETTER} fill-rule="evenodd" />
+		</g>
+		<path class="line cube" bind:this={cube} d={CONTOUR} stroke-width={CONTOUR_W} />
 	{/if}
 </svg>
 
@@ -63,13 +78,27 @@
 		print-color-adjust: exact;
 	}
 
-	.done,
-	.cube,
-	.plain {
+	/* The outer edge of the line is the old solid tile's edge (see contourPath), so every form fills
+	   the same box. The miter limit bevels the sharp corners the cube passes through mid-tumble. */
+	.line {
+		fill: none;
+		stroke: var(--color-red);
+		stroke-linejoin: miter;
+		stroke-miterlimit: 4;
+	}
+
+	/* the R as a letter and the guide's solid mark: plain red fills */
+	.letter {
 		fill: var(--color-red);
 	}
 
-	/* While the lock-in plays the flat cube stands in for the finished mark. */
+	/* A parent can recolour the solid mark by setting --mark-fill (the running markers do on hover). */
+	.solid {
+		fill: var(--mark-fill, var(--color-red));
+		transition: fill 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	/* While the lock-in plays, a cube drawn as the same line stands in for the finished mark. */
 	.cube {
 		display: none;
 	}

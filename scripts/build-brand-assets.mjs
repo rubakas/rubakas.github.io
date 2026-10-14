@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
-import { MARK } from '../src/lib/mark.js';
+import { contourPath, CONTOUR_W, CONTOUR_SMALL_W, R_LETTER } from '../src/lib/mark.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.join(root, 'static');
@@ -21,33 +21,28 @@ const fontCss = `
 @font-face{font-family:'IBM Plex Mono';font-weight:400;src:url(data:font/woff2;base64,${fontData('ibm-plex-mono/ibm-plex-mono-latin-400-normal.woff2')}) format('woff2')}
 *{margin:0;box-sizing:border-box}`;
 
-const mark = (size, extra = '') =>
-	`<svg width="${size}" height="${size}" viewBox="0 0 100 100" ${extra}><path d="${MARK}" fill="${RED}" fill-rule="evenodd"/></svg>`;
-
 /**
- * The 16px favicon is the solid tile with no R: the guide drops the R below 24px. The 32px PNG and
- * the SVG carry the R (the owner's call; the guide's favicon line says "solid tile, no R").
- * Small sizes snap the 45 degree cut to whole pixels.
+ * The mark: the cut tile as a red line, with the R inside it as a solid red letter. `w` is the line
+ * in tile units; `letter: false` leaves the R out, for the smallest sizes where it would smudge.
  */
-function solidTile(size) {
-	const cut = { 16: 4 }[size] ?? Math.round(size * 0.2612);
-	const s = size;
-	const points = [
-		[cut, 0],
-		[s, 0],
-		[s, s - cut],
-		[s - cut, s],
-		[0, s],
-		[0, cut]
-	]
-		.map((p) => p.join(','))
-		.join(' ');
-	return `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}"><polygon points="${points}" fill="${RED}"/></svg>`;
-}
+const mark = (size, extra = '', { w = CONTOUR_W, letter = true } = {}) =>
+	`<svg width="${size}" height="${size}" viewBox="0 0 100 100" ${extra}><path d="${contourPath(w)}" fill="none" stroke="${RED}" stroke-width="${w}" stroke-linejoin="miter" stroke-miterlimit="4"/>${
+		letter ? `<path d="${R_LETTER}" fill="${RED}" fill-rule="evenodd"/>` : ''
+	}</svg>`;
+
+/** Between 24 and 63px the line goes heavier so it still holds; the R stays. */
+const MEDIUM_W = 12;
 
 const pages = {
-	'favicon-16.png': { w: 16, h: 16, transparent: true, body: solidTile(16) },
-	'favicon-32.png': { w: 32, h: 32, transparent: true, body: mark(32) },
+	// The 16px favicon takes the heavy line and no R, as the guide drops the R below 24px. The 32px
+	// PNG and the SVG carry the R (the owner's call) on a line that is heavier than the large forms'.
+	'favicon-16.png': {
+		w: 16,
+		h: 16,
+		transparent: true,
+		body: mark(16, '', { w: CONTOUR_SMALL_W, letter: false })
+	},
+	'favicon-32.png': { w: 32, h: 32, transparent: true, body: mark(32, '', { w: MEDIUM_W }) },
 	// soot ground, mark at 60% (180) and 54% (512), as the guide specifies
 	'apple-touch-icon.png': {
 		w: 180,
@@ -71,7 +66,7 @@ const pages = {
 	${mark(180)}
 	<div style="display:flex;flex-direction:column;gap:24px">
 		<span style="font:700 83.5px/1 Montserrat;letter-spacing:.2em;color:${SOOT}">RUBAKAS</span>
-		<span style="font:400 30px/1 'IBM Plex Mono';letter-spacing:.12em;text-transform:uppercase;color:${SOOT}">The dice. Not the roll</span>
+		<span style="font:400 30px/1 'IBM Plex Mono';letter-spacing:.12em;text-transform:uppercase;color:${SOOT}">Taste is load-bearing</span>
 	</div>
 </div>
 <span style="position:absolute;right:120px;bottom:64px;font:400 26px/1 'IBM Plex Mono';letter-spacing:.06em;color:${SLATE}">rubakas.com</span>`
@@ -80,7 +75,7 @@ const pages = {
 
 fs.writeFileSync(
 	path.join(out, 'favicon.svg'),
-	`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="${MARK}" fill="${RED}" fill-rule="evenodd"/></svg>\n`
+	`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="${contourPath(MEDIUM_W)}" fill="none" stroke="${RED}" stroke-width="${MEDIUM_W}" stroke-linejoin="miter" stroke-miterlimit="4"/><path d="${R_LETTER}" fill="${RED}" fill-rule="evenodd"/></svg>\n`
 );
 
 fs.writeFileSync(

@@ -21,7 +21,7 @@
 		justify-items: center;
 		align-content: center;
 		min-height: 100svh;
-		padding: 48px clamp(20px, 5vw, 64px);
+		padding: 48px var(--gutter);
 		background: var(--color-soot);
 		color: var(--color-paper);
 		text-align: center;
@@ -35,7 +35,7 @@
 
 	h1 {
 		margin: 40px 0 0;
-		font-size: clamp(2rem, 1rem + 4.2vw, 3.75rem);
+		font-size: var(--text-headline);
 		font-weight: 700;
 		line-height: 1.08;
 		letter-spacing: -0.01em;
@@ -46,7 +46,7 @@
 		margin: 20px 0 0;
 		max-width: 34ch;
 		color: var(--color-slate-light);
-		font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+		font-size: var(--text-body);
 		line-height: 1.5;
 		text-wrap: balance;
 	}
