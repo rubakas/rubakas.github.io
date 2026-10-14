@@ -169,9 +169,6 @@
 	footer {
 		/* with the text size turned up, long words and the address wrap rather than widen the page */
 		overflow-wrap: anywhere;
-		--gutter: clamp(20px, 5vw, 64px);
-		/* One twelve-column grid runs through every band: columns 1, 5 and 9 are the shared edges. */
-		--col-gap: clamp(20px, 2.5vw, 40px);
 	}
 
 	.wrap {
@@ -189,7 +186,6 @@
 
 	/* Day: paper ground, soot ink. */
 	.day {
-		--band-y: clamp(72px, 11vw, 144px);
 		/* where a section's marker lands when its marker is pressed, measured from the top of the screen */
 		--land: clamp(28px, 4vw, 56px);
 		background: var(--color-paper);
@@ -262,7 +258,7 @@
 		margin: clamp(32px, 5svh, 52px) 0 0;
 		max-width: 34ch;
 		color: var(--color-paper);
-		font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);
+		font-size: var(--text-lede);
 		line-height: 1.5;
 		text-wrap: balance;
 	}
@@ -283,7 +279,7 @@
 		/* its own block formatting context, so the link's negative margin stays inside it instead of
 		   collapsing up through a section that has no padding above (the second day band) */
 		display: flow-root;
-		margin: 0 0 clamp(40px, 6vw, 72px);
+		margin: 0 0 var(--rule-gap);
 		padding-bottom: 16px;
 		border-bottom: 1px solid var(--color-hairline);
 	}
@@ -319,7 +315,7 @@
 	h2 {
 		margin: 0;
 		max-width: 18ch;
-		font-size: clamp(2rem, 1rem + 4.2vw, 3.75rem);
+		font-size: var(--text-headline);
 		font-weight: 700;
 		line-height: 1.08;
 		letter-spacing: -0.01em;
@@ -328,7 +324,7 @@
 
 	/* What we do: two rows between soot rules, the guide's spec-sheet pattern. */
 	.offers {
-		margin: clamp(40px, 6vw, 72px) 0 0;
+		margin: var(--rule-gap) 0 0;
 		border-top: 1px solid var(--color-soot);
 	}
 
@@ -340,7 +336,7 @@
 	}
 
 	dt {
-		font-size: clamp(1.375rem, 1rem + 1.2vw, 1.875rem);
+		font-size: var(--text-title);
 		font-weight: 600;
 		line-height: 1.2;
 	}
@@ -349,7 +345,7 @@
 		margin: 0;
 		max-width: 56ch;
 		color: var(--color-ink);
-		font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+		font-size: var(--text-body);
 		line-height: 1.6;
 		text-wrap: pretty;
 	}
@@ -364,7 +360,7 @@
 		margin: 0;
 		max-width: 46ch;
 		color: var(--color-ink);
-		font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+		font-size: var(--text-body);
 		line-height: 1.6;
 		text-wrap: pretty;
 	}
@@ -386,7 +382,7 @@
 	   not at footnote size. */
 	h3 {
 		margin: 0;
-		font-size: clamp(1.25rem, 1rem + 0.9vw, 1.5rem);
+		font-size: var(--text-title-sm);
 		font-weight: 600;
 		line-height: 1.25;
 	}
@@ -395,14 +391,14 @@
 		margin: 12px 0 0;
 		max-width: 34ch;
 		color: var(--color-ink);
-		font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+		font-size: var(--text-body-sm);
 		line-height: 1.6;
 		text-wrap: pretty;
 	}
 
 	/* Close: the finished mark, large, on soot. The page opens and ends on the tile. */
 	.close {
-		padding-block: clamp(72px, 11vw, 144px) clamp(56px, 8vw, 96px);
+		padding-block: var(--band-y) clamp(56px, 8vw, 96px);
 	}
 
 	.close-row {
@@ -460,7 +456,7 @@
 	}
 
 	.lockup .wordmark {
-		font-size: 15px;
+		font-size: var(--text-wordmark-small);
 	}
 
 	.github {
@@ -469,7 +465,7 @@
 		min-height: 44px;
 		color: var(--color-slate-light);
 		font-family: var(--font-mono);
-		font-size: 0.8125rem;
+		font-size: var(--text-link);
 		letter-spacing: 0.06em;
 		text-decoration: underline;
 		text-decoration-color: var(--color-slate);

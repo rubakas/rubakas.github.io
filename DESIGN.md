@@ -65,6 +65,12 @@ typography:
     fontWeight: 700
     lineHeight: 1
     letterSpacing: "0.12em"
+  link:
+    fontFamily: "IBM Plex Mono, ui-monospace, monospace"
+    fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.5
+    letterSpacing: "0.06em"
 rounded:
   button: "0"
 spacing:
@@ -179,7 +185,9 @@ Selection is one component token, `selection`: Slate Light background with soot 
 - **Body** (400, clamp 1.0625rem to 1.25rem, 1.6, ink, 46-56ch): offer and crew copy. **Body Small** (400, clamp 1.0625rem to 1.1875rem, 1.6, 34ch) for principles.
 - **Lede** (400, clamp 1.125rem to 1.375rem, 1.5, paper, 34ch): the single sentence under the lockup, set at full strength.
 - **Tagline** (Plex Mono 400, 0.157 of `--h` with an 11px floor, +0.12em, uppercase): "Taste is load-bearing", once, in the lockup.
-- **Label** (Plex Mono 700, `max(19px, 1.1875rem)`, +0.12em, uppercase): buttons; see Buttons for why it must stay bold and large. The footer GitHub link is a separate step, Plex Mono 400 at 0.8125rem and +0.06em, lowercase, as a link rather than a label.
+- **Label** (Plex Mono 700, `max(19px, 1.1875rem)`, +0.12em, uppercase): buttons; see Buttons for why it must stay bold and large. The footer GitHub link is a separate step (`{typography.link}`), Plex Mono 400 at 0.875rem and +0.06em, lowercase, as a link rather than a label.
+
+The sizes and the page measures (gutter, column gap, band padding, rule gap) are theme tokens in `src/app.css`: `--text-headline`, `--text-title`, `--text-title-sm`, `--text-body`, `--text-body-sm`, `--text-lede`, `--text-label`, `--text-link`, `--text-wordmark-small`, `--gutter`, `--col-gap`, `--band-y` and `--rule-gap`. Every page reads them, so a role has one definition. The cover's wordmark and tagline are the exception: they scale from the tile height `--h` and stay in the page.
 
 ### Named Rules
 **The No Kicker Rule.** There are no eyebrows, kickers or labels above headings. Mono capitals are the tagline and buttons only.

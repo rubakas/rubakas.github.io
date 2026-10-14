@@ -14,6 +14,25 @@
 
 	--font-sans: 'Montserrat', system-ui, sans-serif;
 	--font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+	/* The type ramp, one definition per role (DESIGN.md, Typography). The cover's wordmark and
+	   tagline are not here: they scale from the tile height, see +page.svelte. */
+	--text-headline: clamp(2rem, 1rem + 4.2vw, 3.75rem);
+	--text-title: clamp(1.375rem, 1rem + 1.2vw, 1.875rem);
+	--text-title-sm: clamp(1.25rem, 1rem + 0.9vw, 1.5rem);
+	--text-body: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+	--text-body-sm: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+	--text-lede: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);
+	--text-label: max(19px, 1.1875rem);
+	--text-link: 0.875rem;
+	--text-wordmark-small: 15px;
+
+	/* Page measures shared by every route. One twelve-column grid runs through each band from 48rem:
+	   columns 1, 5 and 9 are the shared edges. */
+	--gutter: clamp(20px, 5vw, 64px);
+	--col-gap: clamp(20px, 2.5vw, 40px);
+	--band-y: clamp(72px, 11vw, 144px);
+	--rule-gap: clamp(40px, 6vw, 72px);
 }
 
 @font-face {
@@ -100,7 +119,7 @@
 		padding: 14px 36px;
 		color: var(--color-paper);
 		font-family: var(--font-mono);
-		font-size: max(19px, 1.1875rem);
+		font-size: var(--text-label);
 		font-weight: 700;
 		line-height: 1;
 		letter-spacing: 0.12em;
