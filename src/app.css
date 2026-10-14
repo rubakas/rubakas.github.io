@@ -51,6 +51,17 @@
 		scrollbar-color: var(--color-slate) var(--color-soot);
 	}
 
+	/* Pressing a running marker or the footer logo glides to its target instead of jumping. It is the
+	   browser's own scroll, asked for only while the page holds data-glide (set by the press, see
+	   +page.svelte), so a reload still restores the scroll position at once. It stays off for visitors
+	   who ask for reduced motion, as the Lock-in intro does (app.html). Without JavaScript the link
+	   simply jumps. */
+	@media (prefers-reduced-motion: no-preference) {
+		html[data-glide] {
+			scroll-behavior: smooth;
+		}
+	}
+
 	/* One selection colour for both grounds: Slate Light with soot text. 6.96:1 text contrast, and the
 	   highlight stands clear of soot (6.96:1) and of paper (2.5:1). */
 	::selection {

@@ -6,7 +6,6 @@
 		CONTOUR_W,
 		MARK,
 		R_LETTER,
-		TILE,
 		hullPath,
 		anglesAt,
 		T_LOCK
@@ -15,11 +14,11 @@
 	/**
 	 * The mark is the cut tile drawn as a red line, with the R inside it as a solid red letter.
 	 * `intro` plays the lock-in on load (only the cover does; the flag is set in app.html).
-	 * `solid` is the guide's own mark, the red tile with the R cut out of it. The footer uses it.
-	 * `tile` is the red tile alone, with no R, for the smallest sizes (the 14px running markers):
-	 * a line would thin to a hairline there and a cut-out R to a smudge.
+	 * `solid` is the guide's own mark, the red tile with the R cut out of it. The footer and the
+	 * running markers use it: at those sizes (24 and 32px) a line would thin to a hairline, but the
+	 * guide still keeps the R from 24px up.
 	 */
-	let { intro = false, solid = false, tile = false } = $props();
+	let { intro = false, solid = false } = $props();
 
 	/** @type {SVGPathElement | undefined} */
 	let cube = $state();
@@ -60,8 +59,6 @@
 <svg class="mark" class:lock={locked} viewBox="0 0 100 100" aria-hidden="true" focusable="false">
 	{#if solid}
 		<path class="solid" d={MARK} fill-rule="evenodd" />
-	{:else if tile}
-		<path class="solid" d={TILE} />
 	{:else}
 		<g class="done">
 			<path class="line" d={CONTOUR} stroke-width={CONTOUR_W} />
@@ -90,10 +87,15 @@
 		stroke-miterlimit: 4;
 	}
 
-	/* the R as a letter, the guide's solid mark and the tile alone: all plain red fills */
-	.letter,
-	.solid {
+	/* the R as a letter and the guide's solid mark: plain red fills */
+	.letter {
 		fill: var(--color-red);
+	}
+
+	/* A parent can recolour the solid mark by setting --mark-fill (the running markers do on hover). */
+	.solid {
+		fill: var(--mark-fill, var(--color-red));
+		transition: fill 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
 	/* While the lock-in plays, a cube drawn as the same line stands in for the finished mark. */

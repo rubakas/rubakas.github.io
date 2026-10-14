@@ -115,7 +115,7 @@ components:
     typography: "{typography.wordmark-small}"
   running-marker:
     backgroundColor: "{colors.red}"
-    size: "14px"
+    size: "24px"
 ---
 
 # Design System: Rubakas
@@ -136,14 +136,14 @@ Confirmed rejections: no cards, shadows, gradients, icons or imagery apart from 
 - Montserrat 700 sentence-case headings; IBM Plex Mono capitals for the tagline and buttons only (the buttons in bold).
 - Flat: 1px rules instead of cards or shadows; one solid red button, cut like the mark.
 - One 12-column grid with shared edges at columns 1, 5 and 9.
-- Motion exists once: the mark's Lock-in on the home cover.
+- Motion exists once: the mark's Lock-in on the home cover. The one other movement is the browser's own smooth scroll when a running marker or the footer logo is pressed (see Running marker); it is the page getting somewhere, not decoration.
 
 ## Colors
 
 Three brand colours, one of them red, plus four neutrals taken from the guide's own pages; nothing else is tinted.
 
 ### Primary
-- **Mark Red** (`{colors.red}`): the mark (the contour and its R, the cube line in the intro, the footer's solid mark, the 14px running markers), the `:focus-visible` outline and the call-to-action tile. Nothing else.
+- **Mark Red** (`{colors.red}`): the mark (the contour and its R, the cube line in the intro, the solid mark in the footer and in the running markers), the `:focus-visible` outline and the call-to-action tile. Nothing else.
 
 ### Neutral
 - **Soot** (`{colors.soot}`): night ground; ink and 1px rules on day bands; the page background so overscroll never shows another colour; text inside selections.
@@ -179,7 +179,7 @@ Selection is one component token, `selection`: Slate Light background with soot 
 - **Body** (400, clamp 1.0625rem to 1.25rem, 1.6, ink, 46-56ch): offer and crew copy. **Body Small** (400, clamp 1.0625rem to 1.1875rem, 1.6, 34ch) for principles.
 - **Lede** (400, clamp 1.125rem to 1.375rem, 1.5, paper, 34ch): the single sentence under the lockup, set at full strength.
 - **Tagline** (Plex Mono 400, 0.157 of `--h` with an 11px floor, +0.12em, uppercase): "Taste is load-bearing", once, in the lockup.
-- **Label** (Plex Mono 400, 0.875rem, +0.12em, uppercase): buttons. The footer GitHub link uses the same face at 0.8125rem and +0.06em, lowercase, as a link rather than a label.
+- **Label** (Plex Mono 700, `max(19px, 1.1875rem)`, +0.12em, uppercase): buttons; see Buttons for why it must stay bold and large. The footer GitHub link is a separate step, Plex Mono 400 at 0.8125rem and +0.06em, lowercase, as a link rather than a label.
 
 ### Named Rules
 **The No Kicker Rule.** There are no eyebrows, kickers or labels above headings. Mono capitals are the tagline and buttons only.
@@ -202,7 +202,7 @@ The cover is 100svh with the lockup centred. It scales from tile height `--h` = 
 
 **Forced colors:** no author overrides are written; the browser's forced-colors mode collapses every ground to system colours, while the 1px rules, button borders and focus outline remain visible because they are borders and outlines, not fills. Checked in Chromium's forced-colors emulation: everything stays legible, and the red mark keeps its fill (SVG fills are not overridden). Not checked in Windows high-contrast mode itself.
 
-**Touch:** the footer GitHub link keeps a 44px minimum height; buttons are 60px.
+**Touch:** the footer GitHub link and the footer logo keep a 44px minimum height, the running markers have a 44px target around the 24px mark, and buttons are 60px.
 
 ## Elevation & Depth
 
@@ -213,7 +213,7 @@ Flat. No shadows, no blur, no gradients, no z-layers. Depth is only the alternat
 
 ## Shapes
 
-Geometry comes from the mark: a 100x100 square with the top-left and bottom-right corners cut at 45 degrees, and a Montserrat ExtraBold R. The mark on the page is that tile drawn as a 7-unit red line, half a stroke inside the tile edge so its outer edge is the tile's, with the R as a solid red letter inside it. The guide's own form, the tile filled with the R cut out of it as an evenodd hole, survives in the footer, and the 14px running markers are the filled tile alone, with no R (a line would thin to a hairline and a cut-out R to a smudge at that size). It is the only non-rectangular shape. Everything else is rectangular with hard hairlines, and nothing has a radius: the buttons borrow the mark's cut instead (see Buttons).
+Geometry comes from the mark: a 100x100 square with the top-left and bottom-right corners cut at 45 degrees, and a Montserrat ExtraBold R. The mark on the page is that tile drawn as a 7-unit red line, half a stroke inside the tile edge so its outer edge is the tile's, with the R as a solid red letter inside it. The guide's own form, the tile filled with the R cut out of it as an evenodd hole, survives in the footer and in the 24px running markers, where a line would thin to a hairline (the guide keeps the R from 24px up, so the R is cut out there too). It is the only non-rectangular shape. Everything else is rectangular with hard hairlines, and nothing has a radius: the buttons borrow the mark's cut instead (see Buttons).
 
 The favicon follows the mark: `favicon.svg` and the 32px PNG are the contour with the R on a 12-unit line, the 16px PNG is an 18-unit line with no R; apple-touch-icon, 512px icon and the 1200x630 link card (the contour with the R on a 7-unit line) (showing rubakas.com) come from `scripts/build-brand-assets.mjs`.
 
@@ -222,7 +222,7 @@ The favicon follows the mark: `favicon.svg` and the 32px PNG are the contour wit
 Restrained: one button, a solid red tile cut like the mark.
 
 ### Mark
-Signature component. The mark (the contour with a solid R) appears on the cover, in the close (88px stacked; fills columns 9-12 from 48rem) and on the not-found page (96px). The `tile` form, the red tile alone with no R, is for the 14px running markers; the `solid` form, the guide's filled tile with the R cut out, is for the 32px footer lockup. From 32px up the standard line and the R hold; below that they thin out, so use a filled form there.
+Signature component. The mark (the contour with a solid R) appears on the cover, in the close (88px stacked; fills columns 9-12 from 48rem) and on the not-found page (96px). The `solid` form, the guide's filled tile with the R cut out, is for the 32px footer lockup and the 24px running markers. From 32px up the standard line and the R hold; below that they thin out, so use the solid form there.
 
 The Lock-in plays only on the home cover: the intro flag is set in the document head only on pathname `/` and only if motion is welcome. From 0.3s a red line in the shape of a cube (the tile's cabinet-projection silhouette, a convex hull of a rotated cube, drawn at the contour's scale so that it lands on the contour) tumbles two turns about X and one about Y with an in-out-back ease, locks at 2.7s, and the R fills in with a 4% scale pulse (0.36s, cubic-bezier(0.16, 1, 0.3, 1)). Reduced-motion and no-JS visitors get the finished mark at once. The flag holds a 3.5s failsafe timer id that restores the finished mark if hydration stalls; the component cancels it on mount and clears the flag if it unmounts mid-intro. Text and buttons are visible from first paint; motion never gates content.
 
@@ -240,7 +240,7 @@ A definition list between two 1px soot rules; each row pairs an offer name (Titl
 Three items, each topped by a 1px soot rule with 20px padding, a Title Small heading and a 34ch Body Small paragraph; equal thirds from 48rem. "Humans lead" comes first: it is the claim a competitor cannot copy, so it takes the first column.
 
 ### Running marker
-A 14px solid tile (the `tile` form, no R) above day-band headings on a 1px hairline rule. Wordless and decorative (`aria-hidden`).
+A 24px solid mark (the `solid` form, R cut out) above day-band headings on a 1px hairline rule. It is a link to its own section (`href="#work"`, `href="#crew"`), and pressing it scrolls that section to the top: the marker lands `--land` from the top of the screen (`clamp(28px, 4vw, 56px)`, the same for both sections, so the second band's lack of top padding does not show). The target is 44px, with the mark centred in it; on hover and press the tile turns soot, as the button turns paper; focus is the global red ring around the target. The page glides there with the browser's own smooth scroll, only for visitors who have not asked for reduced motion; they, and visitors without JavaScript, get a plain jump. Smooth scrolling is requested only while an in-page link has just been pressed (`html[data-glide]`, set in `+page.svelte` for two seconds), never for the whole page: otherwise a reload would run the restored scroll position down from the top. Each link is named for its heading, for example "Scroll to the top of this section: Two ways to work with the crew".
 
 ### Footer lockup
 A 32px solid red mark (the guide's tile with the R cut out), 14px gap, and the 15px wordmark on the left, the two together one link to the top of the page (`href="#top"`, the wordmark turns slate-light on hover where a pointer can hover, 44px target, the global red focus ring);  the mono GitHub link (slate-light, underlined in slate, paper on hover where a pointer can hover) on the right, over a 1px ink rule.
@@ -258,9 +258,9 @@ A night page at `/404`, built to `404.html` for GitHub Pages: the mark at 96px, 
 - **Do** alternate soot and paper bands and divide content with 1px rules.
 - **Do** set headings in Montserrat 700 sentence case, body in 400, titles in 600.
 - **Do** align new content to the shared grid edges at columns 1, 5 and 9.
-- **Do** derive the lockup from tile height `--h`; use the tile-only mark for the 14px marker.
+- **Do** derive the lockup from tile height `--h`; use the solid mark, not the line, for the 24px marker, and keep the marker a link to its own section.
 - **Do** set every button in capitals, the email address included, and keep them bold, at least 19px.
-- **Do** show the finished mark at once for reduced motion and without JavaScript.
+- **Do** show the finished mark at once for reduced motion and without JavaScript, and jump instead of gliding when a marker or the footer logo is pressed.
 - **Do** put pointer-only hover styles behind `(hover: hover)` and pair them with `:active`.
 - **Do** keep the one selection colour (Slate Light with soot text) on every ground.
 
@@ -271,6 +271,7 @@ A night page at `/404`, built to `404.html` for GitHub Pages: the mark at 96px, 
 - **Don't** add neutrals beyond the six named above and the two brand grounds.
 - **Don't** bring back terminal or CRT effects from the old site.
 - **Don't** let motion gate content or buttons.
+- **Don't** set `scroll-behavior: smooth` on the whole page: it animates the scroll restored after a reload.
 
 ## Open items and recorded departures
 
@@ -282,5 +283,5 @@ A night page at `/404`, built to `404.html` for GitHub Pages: the mark at 96px, 
 - **Departure, button shape and colour:** the guide shows no button. The owner asked for the mark's cut corners, and chose a solid red tile over the paper outline after seeing four options side by side (paper outline, red fill, red outline, paper fill). It spends the page's only extra red and costs contrast (paper on red is 4.15:1), paid for by the large bold label. The guide's rule that red is never body text stands.
 - **Departure, body size:** the guide's body is 15/24; the page sets 17-20px at 1.6.
 - **Not adopted from the guide's own page:** red link underlines and a red link hover. This is deliberate: the guide itself says red is never body text, and the build keeps links out of red.
-- **Departure, the mark is a contour:** the guide has one mark, the solid red tile with the R cut out. By the owner's request, to keep red from being spent on the logo, the logos on the cover, the close and the not-found page, the favicons, the app icons and the link card are the tile as a red line with the R as a solid red letter (geometry in `src/lib/mark.js`, drawing in `Mark.svelte`). The line is 7 units of the 100-unit tile (about half the R's stem), so the outer edge is exactly the solid tile's and any form can stand in for another at the same size. The footer keeps the guide's solid tile and is a link to the top of the page, and the two 14px running markers are the solid tile alone, both also by the owner's request. The intro cube is drawn as the same line.
+- **Departure, the mark is a contour:** the guide has one mark, the solid red tile with the R cut out. By the owner's request, to keep red from being spent on the logo, the logos on the cover, the close and the not-found page, the favicons, the app icons and the link card are the tile as a red line with the R as a solid red letter (geometry in `src/lib/mark.js`, drawing in `Mark.svelte`). The line is 7 units of the 100-unit tile (about half the R's stem), so the outer edge is exactly the solid tile's and any form can stand in for another at the same size. The footer keeps the guide's solid tile and is a link to the top of the page, and the two 24px running markers are the same solid mark, both also by the owner's request (the markers began at 14px and read as stray dots). The intro cube is drawn as the same line.
 - **Provenance:** `npm run brand:assets` regenerates the rasters and drops their embedded provenance; rerun `impeccable embed-prompt` afterwards.

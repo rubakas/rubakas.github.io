@@ -53,8 +53,8 @@ export const CONTOUR = contourPath();
 
 /**
  * Under about 32px the standard line thins to a hairline and the R to a smudge. The 16px favicon,
- * the one contour that small, takes this heavier line and no R. (The 14px running markers are the
- * solid tile instead.)
+ * the one contour that small, takes this heavier line and no R. (The 24px running markers and the
+ * footer logo are the solid mark instead.)
  */
 export const CONTOUR_SMALL_W = 18;
 

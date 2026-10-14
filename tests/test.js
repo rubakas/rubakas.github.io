@@ -7,6 +7,30 @@ import { expect, test } from '@playwright/test';
 const fillOf = (button) =>
 	button.evaluate((el) => getComputedStyle(el, '::before').backgroundColor);
 
+/**
+ * The page's scroll position on every frame for `ms` milliseconds. Start it before the action, and
+ * await the result after.
+ * @param {import('@playwright/test').Page} page
+ * @param {number} ms
+ * @returns {Promise<number[]>}
+ */
+const scrollTrace = (page, ms) =>
+	page.evaluate(
+		(ms) =>
+			new Promise((resolve) => {
+				/** @type {number[]} */
+				const ys = [];
+				const start = performance.now();
+				const frame = (/** @type {number} */ now) => {
+					ys.push(Math.round(window.scrollY));
+					if (now - start < ms) requestAnimationFrame(frame);
+					else resolve(ys);
+				};
+				requestAnimationFrame(frame);
+			}),
+		ms
+	);
+
 test('index page has expected h1', async ({ page }) => {
 	await page.goto('/');
 	await expect(page.getByRole('heading', { level: 1, name: 'RUBAKAS' })).toBeVisible();
@@ -110,8 +134,8 @@ test('the logos are red lines with a solid R; the footer and the running markers
 	expect(marks).toHaveLength(5); // the cover, two running markers, the close and the footer
 	for (const { size, inFooter, seen } of marks) {
 		if (inFooter || size < 32) {
-			// the filled tiles: the footer's is the guide mark, red with the R cut out; the 14px
-			// running markers are the tile alone
+			// the filled tiles: the guide mark, red with the R cut out, in the footer and as the
+			// 24px running markers
 			expect(seen).toHaveLength(1);
 			expect(seen[0].classes).toContain('solid');
 			expect(seen[0].fill).toBe('rgb(238, 30, 30)');
@@ -139,14 +163,91 @@ test('the footer logo is a link that scrolls back to the top', async ({ page }) 
 	await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
 });
 
-test('the running markers stay at 14px', async ({ page }) => {
+test('the running markers stay at 24px', async ({ page }) => {
 	await page.goto('/');
 	const marks = page.locator('.running-mark svg');
 	await expect(marks).toHaveCount(2);
 	for (const mark of await marks.all()) {
 		const box = await mark.boundingBox();
-		expect([box?.width, box?.height]).toEqual([14, 14]);
+		expect([box?.width, box?.height]).toEqual([24, 24]);
 	}
+});
+
+test('a running marker scrolls its own section to the top', async ({ page }) => {
+	// the landing is measured with the jump; the glide has its own test below
+	await page.emulateMedia({ reducedMotion: 'reduce' });
+	const sections = [
+		{ id: 'work', name: /Two ways to work with the crew/ },
+		{ id: 'crew', name: /A small crew with a big crew behind it/ }
+	];
+	for (const size of [
+		{ width: 1440, height: 900 },
+		{ width: 390, height: 844 }
+	]) {
+		await page.setViewportSize(size);
+		await page.goto('/');
+		for (const { id, name } of sections) {
+			const marker = page.getByRole('link', { name });
+			await expect(marker).toHaveAttribute('href', `#${id}`);
+			const box = await marker.boundingBox();
+			expect(Math.min(box?.width ?? 0, box?.height ?? 0)).toBeGreaterThanOrEqual(44);
+			await marker.scrollIntoViewIfNeeded();
+			await marker.click();
+			// the marker lands the same distance from the top for both sections: --land, 28 to 56px
+			await expect
+				.poll(() =>
+					page.evaluate(
+						(i) => document.querySelector(`#${i} .running-mark`)?.getBoundingClientRect().top ?? -1,
+						id
+					)
+				)
+				.toBeGreaterThanOrEqual(27);
+			const landed = await page.evaluate(
+				(i) => document.querySelector(`#${i} .running-mark`)?.getBoundingClientRect().top ?? -1,
+				id
+			);
+			expect(landed).toBeLessThanOrEqual(57);
+		}
+	}
+});
+
+test('pressing a marker or the footer logo glides there, and jumps when motion is reduced', async ({
+	page
+}) => {
+	await page.goto('/');
+	const links = [
+		page.getByRole('link', { name: /A small crew with a big crew behind it/ }),
+		page.getByRole('link', { name: 'Rubakas, back to the top' })
+	];
+	for (const reducedMotion of /** @type {const} */ (['no-preference', 'reduce'])) {
+		await page.emulateMedia({ reducedMotion });
+		for (const link of links) {
+			// start from a place that is not the target, with the link in view so the click does not scroll
+			await page.evaluate(() => window.scrollTo({ top: 1000, behavior: 'instant' }));
+			await link.scrollIntoViewIfNeeded();
+			const from = await page.evaluate(() => Math.round(window.scrollY));
+			const trace = scrollTrace(page, 1500);
+			await link.click();
+			const ys = await trace;
+			const to = ys[ys.length - 1];
+			expect(to).not.toBe(from);
+			// frames that are neither where it started nor where it ended: the glide itself
+			const between = ys.filter((y) => y !== from && y !== to);
+			if (reducedMotion === 'reduce') expect(between).toHaveLength(0);
+			else expect(between.length).toBeGreaterThan(3);
+		}
+	}
+});
+
+test('a reload puts the scroll position back at once, without gliding', async ({ page }) => {
+	await page.goto('/');
+	await page.evaluate(() => window.scrollTo({ top: 1500, behavior: 'instant' }));
+	await page.waitForTimeout(300);
+	await page.reload();
+	const ys = await scrollTrace(page, 800);
+	expect(ys[ys.length - 1]).toBe(1500);
+	// smooth scrolling for the whole page would run the restore from the top down to 1500
+	expect(ys.filter((y) => y !== 0 && y !== 1500)).toHaveLength(0);
 });
 
 test('the finished mark is shown when motion is reduced', async ({ page }) => {

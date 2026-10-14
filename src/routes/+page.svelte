@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
 	import Mark from '../lib/Mark.svelte';
 
 	const email = 'contact@rubakas.com';
@@ -6,6 +7,29 @@
 	const description =
 		'Rubakas is a small crew that runs AI agents on real software work. AI consulting and strategy, tech support and maintenance.';
 	const site = 'https://rubakas.com';
+
+	// Pressing an in-page link (a running marker, the footer logo) glides to its target. The page asks
+	// for smooth scrolling only for those presses (app.css, html[data-glide]): switched on for every
+	// scroll it would also animate the restore after a reload from the top down to where the visitor
+	// was. Capture phase, so the flag is up before the browser or SvelteKit scrolls.
+	onMount(() => {
+		const root = document.documentElement;
+		/** @type {ReturnType<typeof setTimeout> | undefined} */
+		let timer;
+		/** @param {MouseEvent} event */
+		const glide = (event) => {
+			if (!(event.target instanceof Element) || !event.target.closest('a[href^="#"]')) return;
+			root.dataset.glide = '';
+			clearTimeout(timer);
+			timer = setTimeout(() => delete root.dataset.glide, 2000);
+		};
+		document.addEventListener('click', glide, true);
+		return () => {
+			document.removeEventListener('click', glide, true);
+			clearTimeout(timer);
+			delete root.dataset.glide;
+		};
+	});
 </script>
 
 <svelte:head>
@@ -37,9 +61,16 @@
 		</div>
 	</section>
 
-	<section class="day work" aria-labelledby="work-title">
+	<section id="work" class="day work" aria-labelledby="work-title">
 		<div class="wrap">
-			<div class="running" aria-hidden="true"><span class="running-mark"><Mark tile /></span></div>
+			<div class="running">
+				<a
+					class="running-link"
+					href="#work"
+					aria-label="Scroll to the top of this section: Two ways to work with the crew"
+					><span class="running-mark"><Mark solid /></span></a
+				>
+			</div>
 			<h2 id="work-title">Two ways to work with the crew.</h2>
 			<dl class="offers">
 				<div class="offer">
@@ -56,9 +87,16 @@
 		</div>
 	</section>
 
-	<section class="day crew" aria-labelledby="crew-title">
+	<section id="crew" class="day crew" aria-labelledby="crew-title">
 		<div class="wrap">
-			<div class="running" aria-hidden="true"><span class="running-mark"><Mark tile /></span></div>
+			<div class="running">
+				<a
+					class="running-link"
+					href="#crew"
+					aria-label="Scroll to the top of this section: A small crew with a big crew behind it"
+					><span class="running-mark"><Mark solid /></span></a
+				>
+			</div>
 			<div class="crew-head">
 				<h2 id="crew-title">A small crew with a big crew behind it.</h2>
 				<p>
@@ -130,14 +168,20 @@
 
 	/* Day: paper ground, soot ink. */
 	.day {
+		--band-y: clamp(72px, 11vw, 144px);
+		/* where a section's marker lands when its marker is pressed, measured from the top of the screen */
+		--land: clamp(28px, 4vw, 56px);
 		background: var(--color-paper);
 		color: var(--color-soot);
-		padding-block: clamp(72px, 11vw, 144px);
+		padding-block: var(--band-y);
+		/* The section scrolls to the top with its marker --land down, not a whole band of padding down. */
+		scroll-margin-top: calc(var(--land) - var(--band-y));
 	}
 
-	/* Two day sections in a row share one gap, not two. */
+	/* Two day sections in a row share one gap, not two. This one has no padding above its marker. */
 	.day + .day {
 		padding-top: 0;
+		scroll-margin-top: var(--land);
 	}
 
 	/* The lockup's measures come from the guide: stacked, scaled from the tile height --h. */
@@ -213,17 +257,42 @@
 		}
 	}
 
-	/* A wordless section marker from the guide's running header: the tile at 14px on a hairline. */
+	/* A wordless section marker from the guide's running header: the solid mark at 24px on a hairline. */
 	.running {
+		/* its own block formatting context, so the link's negative margin stays inside it instead of
+		   collapsing up through a section that has no padding above (the second day band) */
+		display: flow-root;
 		margin: 0 0 clamp(40px, 6vw, 72px);
 		padding-bottom: 16px;
 		border-bottom: 1px solid var(--color-hairline);
 	}
 
+	/* The marker is a link that scrolls its own section to the top. The target is 44px, so the 24px
+	   mark gets 10px of room that the negative margin takes back out of the layout. On hover and press
+	   the tile turns soot, as the button turns paper. */
+	.running-link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		margin: -10px 0 -10px -10px;
+	}
+
+	.running-link:active {
+		--mark-fill: var(--color-soot);
+	}
+
+	@media (hover: hover) {
+		.running-link:hover {
+			--mark-fill: var(--color-soot);
+		}
+	}
+
 	.running-mark {
 		display: block;
-		width: 14px;
-		height: 14px;
+		width: 24px;
+		height: 24px;
 	}
 
 	h2 {
