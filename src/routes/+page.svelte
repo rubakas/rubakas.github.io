@@ -2,7 +2,7 @@
 	import Mark from '../lib/Mark.svelte';
 
 	const email = 'contact@rubakas.com';
-	const title = 'Rubakas: The dice. Not the roll';
+	const title = 'Rubakas: Taste is load-bearing';
 	const description =
 		'Rubakas is a small crew that runs AI agents on real software work. AI consulting and strategy, tech support and maintenance.';
 	const site = 'https://rubakas.com';
@@ -20,7 +20,7 @@
 	<meta property="og:image" content="{site}/og-1200x630.png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
-	<meta property="og:image:alt" content="The Rubakas mark and wordmark: The dice. Not the roll." />
+	<meta property="og:image:alt" content="The Rubakas mark and wordmark: Taste is load-bearing." />
 	<meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
@@ -30,16 +30,16 @@
 			<div class="cover-mark"><Mark intro /></div>
 			<h1>
 				<span class="wordmark">Rubakas</span>
-				<span class="tagline">The dice. Not the roll</span>
+				<span class="tagline">Taste is load-bearing</span>
 			</h1>
-			<p class="lede">A small crew running AI agents on real software work.</p>
+			<p class="lede">A small crew running AI&nbsp;agents on real software work.</p>
 			<a class="button" href="mailto:{email}">Talk with us</a>
 		</div>
 	</section>
 
 	<section class="day work" aria-labelledby="work-title">
 		<div class="wrap">
-			<div class="running" aria-hidden="true"><span class="running-mark"><Mark solid /></span></div>
+			<div class="running" aria-hidden="true"><span class="running-mark"><Mark tile /></span></div>
 			<h2 id="work-title">Two ways to work with the crew.</h2>
 			<dl class="offers">
 				<div class="offer">
@@ -58,7 +58,7 @@
 
 	<section class="day crew" aria-labelledby="crew-title">
 		<div class="wrap">
-			<div class="running" aria-hidden="true"><span class="running-mark"><Mark solid /></span></div>
+			<div class="running" aria-hidden="true"><span class="running-mark"><Mark tile /></span></div>
 			<div class="crew-head">
 				<h2 id="crew-title">A small crew with a big crew behind it.</h2>
 				<p>
@@ -68,16 +68,16 @@
 			</div>
 			<ul class="principles" role="list">
 				<li>
+					<h3>Humans lead</h3>
+					<p>Agents draft, people decide. We talk about review, not autonomy.</p>
+				</li>
+				<li>
 					<h3>Plain-spoken</h3>
 					<p>Short sentences. No hype about AI, no magic. We say what the crew does.</p>
 				</li>
 				<li>
 					<h3>Convention over improvisation</h3>
 					<p>The Rails habit, applied to machines: defaults, structure, repeatable results.</p>
-				</li>
-				<li>
-					<h3>Humans lead</h3>
-					<p>Agents draft, people decide. We talk about review, not autonomy.</p>
 				</li>
 			</ul>
 		</div>
@@ -89,7 +89,7 @@
 			<div class="close-copy">
 				<h2 id="close-title">Tell us what you are building.</h2>
 				<p>Or what needs looking after.</p>
-				<a class="button address" href="mailto:{email}">Email {email}</a>
+				<a class="button" href="mailto:{email}">Email {email}</a>
 			</div>
 		</div>
 	</section>
@@ -97,10 +97,10 @@
 
 <footer>
 	<div class="wrap footer-row">
-		<div class="lockup">
-			<span class="lockup-mark"><Mark /></span>
+		<a class="lockup" href="#top" aria-label="Rubakas, back to the top">
+			<span class="lockup-mark"><Mark solid /></span>
 			<span class="wordmark">Rubakas</span>
-		</div>
+		</a>
 		<a class="github" href="https://github.com/rubakas">github.com/rubakas</a>
 	</div>
 </footer>
@@ -191,11 +191,13 @@
 		text-transform: uppercase;
 	}
 
+	/* The one plain sentence that says what the crew does, so it reads at full strength: paper, and
+	   larger than the body copy. */
 	.lede {
-		margin: clamp(28px, 4svh, 44px) 0 0;
+		margin: clamp(32px, 5svh, 52px) 0 0;
 		max-width: 34ch;
-		color: var(--color-slate-light);
-		font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+		color: var(--color-paper);
+		font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);
 		line-height: 1.5;
 		text-wrap: balance;
 	}
@@ -209,12 +211,6 @@
 		.github:hover {
 			color: var(--color-paper);
 		}
-	}
-
-	/* An address stays in the case people will copy it in. */
-	.button.address {
-		letter-spacing: 0.04em;
-		text-transform: none;
 	}
 
 	/* A wordless section marker from the guide's running header: the tile at 14px on a hairline. */
@@ -296,9 +292,11 @@
 		border-top: 1px solid var(--color-soot);
 	}
 
+	/* The principles are the page's trust anchor, so they sit one clear step below the band heading,
+	   not at footnote size. */
 	h3 {
 		margin: 0;
-		font-size: 1.25rem;
+		font-size: clamp(1.25rem, 1rem + 0.9vw, 1.5rem);
 		font-weight: 600;
 		line-height: 1.25;
 	}
@@ -307,7 +305,7 @@
 		margin: 12px 0 0;
 		max-width: 34ch;
 		color: var(--color-ink);
-		font-size: 1.0625rem;
+		font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
 		line-height: 1.6;
 		text-wrap: pretty;
 	}
@@ -355,10 +353,22 @@
 		border-top: 1px solid var(--color-ink);
 	}
 
+	/* The footer logo is a link to the top of the page; like the other footer link it keeps a 44px
+	   target. The mark is the guide's solid tile here, and the one filled tile left on the page. */
 	.lockup {
 		display: flex;
 		align-items: center;
 		gap: 14px;
+		min-height: 44px;
+		color: var(--color-paper);
+		text-decoration: none;
+		transition: color 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	@media (hover: hover) {
+		.lockup:hover {
+			color: var(--color-slate-light);
+		}
 	}
 
 	.lockup-mark {

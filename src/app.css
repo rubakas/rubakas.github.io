@@ -32,6 +32,14 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: 'IBM Plex Mono';
+	src: url('/fonts/ibm-plex-mono/ibm-plex-mono-latin-700-normal.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
 @layer base {
 	html {
 		/* the page opens and closes on soot, so overscroll never shows a different colour */
@@ -57,38 +65,86 @@
 }
 
 @layer components {
-	/* The outline button, paper on soot. It never takes a fill except on hover and press. Hover
-	   only where a pointer can hover; on touch a tap shows :active and then lets go. */
+	/* The call to action: a red tile with the mark's cut, paper capitals on it. The top-left and
+	   bottom-right corners are cut at 45 degrees, by the same share of the height (26.12%) as the
+	   tile's. On hover and press it inverts to paper with a soot label. Hover only where a pointer
+	   can hover; on touch a tap shows :active and then lets go.
+
+	   Paper on this red is 4.15:1, short of the 4.5:1 that small text needs, so the label is set as
+	   large text: bold and at least 18.66px (WCAG asks 3:1 for that). Do not shrink either.
+
+	   A fill cannot take a cut with border-radius, and clip-path on the button itself would clip its
+	   focus ring. So the shape is one clipped layer behind the label (::before). Print and forced
+	   colours drop backgrounds, so they fall back to a plain bordered rectangle. */
 	.button {
+		--button-h: 60px;
+		--cut: calc(var(--button-h) * 0.2612);
+		--button-fill: var(--color-red);
+		position: relative;
+		isolation: isolate;
 		display: inline-flex;
 		align-items: center;
-		min-height: 48px;
+		min-height: var(--button-h);
 		max-width: 100%;
-		padding: 12px 28px;
-		border: 1px solid currentColor;
-		border-radius: 6px;
+		padding: 14px 36px;
 		color: var(--color-paper);
 		font-family: var(--font-mono);
-		font-size: 0.8125rem;
+		font-size: max(19px, 1.1875rem);
+		font-weight: 700;
 		line-height: 1;
 		letter-spacing: 0.12em;
 		text-align: center;
 		text-transform: uppercase;
 		text-decoration: none;
-		transition:
-			background-color 0.18s cubic-bezier(0.16, 1, 0.3, 1),
-			color 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+		transition: color 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.button::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: var(--button-fill);
+		clip-path: polygon(
+			var(--cut) 0,
+			100% 0,
+			100% calc(100% - var(--cut)),
+			calc(100% - var(--cut)) 100%,
+			0 100%,
+			0 var(--cut)
+		);
+		transition: background-color 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
 	.button:active {
-		background: var(--color-paper);
+		--button-fill: var(--color-paper);
 		color: var(--color-soot);
 	}
 
 	@media (hover: hover) {
 		.button:hover {
-			background: var(--color-paper);
+			--button-fill: var(--color-paper);
 			color: var(--color-soot);
+		}
+	}
+
+	/* The address is 19 characters of large bold mono, and the label may not shrink. On the narrowest
+	   phones the padding and tracking give way instead, so it breaks at the space and never inside
+	   the word. */
+	@media (max-width: 24rem) {
+		.button {
+			padding-inline: 20px;
+			letter-spacing: 0.06em;
+		}
+	}
+
+	@media print, (forced-colors: active) {
+		.button {
+			border: 1px solid currentColor;
+		}
+
+		.button::before {
+			display: none;
 		}
 	}
 }
